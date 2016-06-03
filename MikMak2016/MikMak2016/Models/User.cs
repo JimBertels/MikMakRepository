@@ -11,11 +11,11 @@ namespace MikMak2016.Models
     {
         
         //[Display(Name = "Nom")]
-        [DisplayName("Veuillez introduire vos coordonnées s.v.p.")]
+        [DisplayName("Connexion")]
         public string Login { get; set; }
-        [DisplayName("Nom d'utilisateur")]
+        [DisplayName("Nom")]
         public string Name { get; set; }
-        [DisplayName("Mot de passe")]
+        [DisplayName("Password")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }

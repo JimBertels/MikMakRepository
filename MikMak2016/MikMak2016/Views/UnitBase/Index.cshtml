@@ -4,12 +4,15 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Liste des unités de bases</h2>
+<h2>UnitBase</h2>
 
-<button>@Html.ActionLink("Page d'accueil", "Index", "Home")</button>
-<button>@Html.ActionLink("Créer nouvelle unité de base", "Create")</button>
-<button>@Html.ActionLink("Liste des unités de base en PDF", "GeneratePDF", "PDF", new { path = "UnitBase" }, null)</button>
-
+<p>@Html.ActionLink("Page d'accueil", "Index", "Home")</p>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<p>
+    @Html.ActionLink("Résumé Pdf", "GeneratePDF", "PDF", new { path = "UnitBase" }, null)
+</p>
 <p>
     @using (Html.BeginForm("Index", "UnitBase", FormMethod.Get))
     {
@@ -41,9 +44,9 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                <button>@Html.ActionLink("Editer", "Edit", new { id = item.Id })</button>
-                <button>@Html.ActionLink("Details", "Details", new { id = item.Id }) </button>
-                <button>@Html.ActionLink("Supprimer", "Delete", new { id = item.Id })</button>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>
     }

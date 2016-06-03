@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MikMak2016.App_Data.DAL;
+using PagedList;
+using PagedList.Mvc;
 
 namespace MikMak2016.Controllers
 {
@@ -15,7 +17,7 @@ namespace MikMak2016.Controllers
         private MikMak2016Entities db = new MikMak2016Entities();
 
         // GET: /Article/
-        public ActionResult Index(string searchBy, string search, string sortBy)
+        public ActionResult Index(string searchBy, string search, string sortBy, int? page) //int? = nullable --> bij eerste bezoek pagina nog nul
         {
             ViewBag.SortNameParameter = string.IsNullOrEmpty(sortBy) ? "Name desc" : "";
             ViewBag.SortNumberParameter = string.IsNullOrEmpty(sortBy) ? "Number desc" : "";
@@ -44,7 +46,7 @@ namespace MikMak2016.Controllers
                     articles = articles.OrderBy(x => x.Number);
                     break;
             }
-            return View(articles.ToList());
+            return View(articles.ToList().ToPagedList(page ?? 1, 10)); //page ?? 1 = als het 0 is gebruik 1. 2e parameter is aantal items/pagina
         }
 
         // GET: /Article/Details/5

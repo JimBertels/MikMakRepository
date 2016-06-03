@@ -13,171 +13,48 @@ html {
 body {
     width: 100%;
     height: 100%;
+    background-color: #F2F2F2;
 }
 
-/* LOGIN SCREEN */
-.log-in {
-    background-image: url(../Content/Images/image1.jpg);
-    color: white;
-    font-size: 1.5em;
-    font-weight: bold;
-    border: solid;
-    border-color: white;
-    border-width: 2px;
-    text-align: center;
-}
-
-/* JUMBOTRON */
 .jumbotron {
-    background-image: url(../Content/Images/image1.jpg);
+    background-image: url(../Content/Images/cute-little-fat-yellow-easter-chicken.jpg);
     color: black;
-    font-size: 1.0em;
+    font-size: 3.0em;
     font-weight: bold;
     border: solid;
-    border-color: white;
     border-width: 2px;
-    margin-top: 15%;
-    margin-bottom: 10%;
+    margin-top: 2em;
+    margin-bottom: 2em;
 }
-
-    .jumbotron h1 {
-        color: white;
-        font-size: 3.0em;
-        font-weight: bold;
-    }
 
     .jumbotron h2 {
-        color: white;
         font-style: italic;
     }
 
-.navbar {
-    background-image: url(../Content/Images/image1.jpg);
-    color: black;
-}
-
 .row button {
-    background-image: url(../Content/Images/image1.jpg);
+    background-color: rgba(255, 216, 0, 0.49);
     border: solid;
     border-width: 2px;
-    border-color: white;
+    border-color: black;
     border-radius: 5%;
-    color: white;
+    color: black;
     font-size: 1.5em;
-    font-weight: bold;
+    font-weight: bold;    
 }
 
 .table {
+    background-image: url(../Content/Images/cute-little-fat-yellow-easter-chicken.jpg);
+    border: solid;
+    border-width: 2px;
+    padding-bottom: 2em;
     width: 100%;
-    border-collapse: collapse;
+    height: 20%;
 }
 
     .table th {
-        background-color: #3d7dd7;
+        background-color: #ededed;
         color: black;
         font-size: 1.0em;
         font-weight: bold;
         font-style: italic;
     }
-
-    .table td {
-        padding: 7px;
-    }
-
-    /* minimale support voor IE8 en lager */
-    .table tr {
-        background: #b8d1f3;
-    }
-
-        /*  instellen achtergrondkleur voor alle ONEVEN rijen  */
-        .table tr:nth-child(odd) {
-            background: #b8d1f3;
-        }
-
-        /*  instellen achtergrondkleur voor alle EVEN rijen  */
-        .table tr:nth-child(even) {
-            background: #dae5f4;
-        }
-
-        .btn-warning {
-            background-color: transparent;
-            border: 1px;
-            border-style: solid;
-            border-color: orange;
-        }
-
-        .btn-danger {
-            background-color: transparent;
-            border: 1px;
-            border-style: solid;
-            border-color: red;
-        }
-
-        .btn-primary {
-            background-color: transparent;
-            border: 1px;
-            border-style: solid;
-            border-color: blue;
-        }
-
-/*LOGIN SCREEN*/
-.login {
-    background-image: url(../Content/Images/cute-little-fat-yellow-easter-chicken.jpg);
-    border: solid;
-    border-width: 2px;
-    width: 50%;
-    margin-top: 2em;
-    align-content: center;
-}
-
-    .login div {
-        padding-left: 1em;
-        padding-bottom: 0.5em;
-    }
-
-    .login input {
-        padding-left: 1em;
-        padding-bottom: 0.5em;
-    }
-
-/*FORMS*/
-.form-horizontal {
-    /*background-image: url(../Content/Images/500_F_90064613_CZ6f2K2Z2Rj3FcoagfGIpGGm9PCyIIIL.jpg);*/
-    background-color: rgba(81, 134, 219, 0.48);
-    border: solid;
-    border-color: white;
-    border-width: 2px;
-    border-radius: 2%;
-    width: 50%;
-    margin-top: 1em;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 6em;
-    padding-right: 6em;
-}
-
-    .form-horizontal h4 {
-        font-size: 2em;
-        color: black;
-        font-weight: bold;
-        font-style: italic;
-        -webkit-text-stroke-width: 1px;
-        -webkit-text-stroke-color: white;
-    }
-
-.col-md-4 {
-    font-size: 1em;
-    color: white;
-    font-weight: bold;
-    font-style: italic;    
-}
-
-.returnlink {
-    text-align: center;
-}
-
-/*COPYRIGHT FOOTER*/
-.footer {
-    margin-top: 20em;
-    text-align: center;
-}

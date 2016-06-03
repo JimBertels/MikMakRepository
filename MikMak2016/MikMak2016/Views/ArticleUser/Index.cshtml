@@ -4,12 +4,15 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Liste d'articles</h2>
+<h2>Index</h2>
 
-<button>@Html.ActionLink("Page d'accueil", "IndexUser", "Home")</button>
-@*<button>@Html.ActionLink("Créer nouvel article", "Create")</button>*@
-<button>@Html.ActionLink("Liste des articles en PDF", "GeneratePDF", "PDF", new { path = "Article" }, null)</button>
-
+<p>@Html.ActionLink("Page d'accueil", "IndexUser", "Home")</p>
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<p>
+    @Html.ActionLink("Résumé Pdf", "GeneratePDF", "PDF", new { path = "Article" }, null)
+</p>
 <p>
     @using (Html.BeginForm("Index", "ArticleUser", FormMethod.Get))
     {
@@ -18,16 +21,18 @@
         @Html.TextBox("search") <input type="submit" value="search" />
     }
 </p>
-
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Number)
         </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.StandardCost)
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
-        <th>Action</th>
+        
     </tr>
 
 @foreach (var item in Model) {
@@ -78,9 +83,9 @@
             @Html.DisplayFor(modelItem => item.UnitBase.Code)
         </td>*@
         <td>
-            @*<button>@Html.ActionLink("Editer", "Edit", new { id = item.Id })</button>*@
-            <button>@Html.ActionLink("Details", "Details", new { id = item.Id }) </button>
-            @*<button>@Html.ActionLink("Supprimer", "Delete", new { id = item.Id })</button>*@
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |*@
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) 
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
         </td>
     </tr>
 }

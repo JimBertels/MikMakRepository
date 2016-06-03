@@ -4,12 +4,15 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Liste des types d'article</h2>
+<h2>Index</h2>
 
-<button>@Html.ActionLink("Page d'accueil", "IndexUser", "Home")</button>
-<button>@Html.ActionLink("Créer nouvel type d'article", "Create")</button>
-<button>@Html.ActionLink("Liste des types d'article en PDF", "GeneratePDF", "PDF", new { path = "ArticleType" }, null)</button>
-
+<p>@Html.ActionLink("Page d'accueil", "IndexUser", "Home")</p>
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<p>
+    @Html.ActionLink("Résumé Pdf", "GeneratePDF", "PDF", new { path = "ArticleType" }, null)
+</p>
 <p>
     @using (Html.BeginForm("Index", "ArticleTypeUser", FormMethod.Get))
     {
@@ -18,7 +21,6 @@
         @Html.TextBox("search") <input type="submit" value="search" />
     }
 </p>
-
 <table class="table">
     <tr>
         <th>
@@ -42,9 +44,9 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @*<button>@Html.ActionLink("Editer", "Edit", new { id = item.Id })</button>*@
-                <button>@Html.ActionLink("Details", "Details", new { id = item.Id }) </button>
-                @*<button>@Html.ActionLink("Supprimer", "Delete", new { id = item.Id })</button>*@
+                @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |*@
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @*@Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
             </td>
         </tr>
     }
