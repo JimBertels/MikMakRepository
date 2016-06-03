@@ -41,6 +41,9 @@
     <Reference Include="PagedList.Mvc">
       <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="Rotativa">
+      <HintPath>..\packages\Rotativa.1.6.4\lib\net40\Rotativa.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -94,8 +97,10 @@
   <ItemGroup>
     <Content Include="App.config" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App_Browsers\qt.browser" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -22,8 +22,6 @@ namespace MikMak2016.App_Data.DAL
         public string InsertedOn { get; set; }
         public string UpdatedBy { get; set; }
         public string UpdatedOn { get; set; }
-
-        public ProductArticle Pa { get; set; }
     
         public virtual Article Article { get; set; }
     }

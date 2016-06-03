@@ -15,9 +15,35 @@ namespace MikMak2016.Controllers
         private MikMak2016Entities db = new MikMak2016Entities();
 
         // GET: /Supplier/
-        public ActionResult Index()
+        public ActionResult Index(string searchBy, string search, string sortBy)
         {
-            return View(db.Supplier.ToList());
+            ViewBag.SortNameParameter = string.IsNullOrEmpty(sortBy) ? "Name desc" : "";
+            ViewBag.SortNumberParameter = string.IsNullOrEmpty(sortBy) ? "Code desc" : "";
+
+            var suppliers = db.Supplier.AsQueryable();
+
+            if (searchBy == "Code")
+            {
+                suppliers = suppliers.Where(x => x.Code.StartsWith(search) || search == null);
+            }
+            else
+            {
+                suppliers = suppliers.Where(x => x.Name.StartsWith(search) || search == null);
+            }
+
+            switch (sortBy)
+            {
+                case "Code desc":
+                    suppliers = suppliers.OrderByDescending(x => x.Code);
+                    break;
+                case "Name desc":
+                    suppliers = suppliers.OrderByDescending(x => x.Name);
+                    break;
+                default:
+                    suppliers = suppliers.OrderBy(x => x.Code);
+                    break;
+            }
+            return View(suppliers.ToList());
         }
 
         // GET: /Supplier/Details/5

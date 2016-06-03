@@ -49,6 +49,9 @@
     <Reference Include="PagedList.Mvc">
       <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="Rotativa">
+      <HintPath>..\packages\Rotativa.1.6.4\lib\net40\Rotativa.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -146,8 +149,10 @@
     <Compile Include="Controllers\ArticleTypeController.cs" />
     <Compile Include="Controllers\ArticleTypeUserController.cs" />
     <Compile Include="Controllers\ArticleUserController.cs" />
+    <Compile Include="Controllers\ErrorPageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PDFController.cs" />
     <Compile Include="Controllers\ProductArticleController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="Controllers\SupplierUserController.cs" />
@@ -174,7 +179,6 @@
     <Compile Include="App_Data\DAL\ProductArticle.cs">
       <DependentUpon>MikMakModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ProductArticleModel.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App_Data\DAL\Supplier.cs">
@@ -192,6 +196,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="App_Data\DAL\MikMakModel.edmx">
@@ -211,6 +216,7 @@
       <DependentUpon>MikMakModel.edmx</DependentUpon>
       <LastGenOutput>MikMakModel.cs</LastGenOutput>
     </Content>
+    <Content Include="App_Browsers\qt.browser" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -278,6 +284,13 @@
     <Content Include="Views\SupplierUser\Details.cshtml" />
     <Content Include="Views\SupplierUser\Edit.cshtml" />
     <Content Include="Views\SupplierUser\Index.cshtml" />
+    <Content Include="Views\PDF\PdfArticle.cshtml" />
+    <Content Include="Views\PDF\PdfArticleType.cshtml" />
+    <Content Include="Views\PDF\PdfIndex.cshtml" />
+    <Content Include="Views\PDF\PdfProductArticle.cshtml" />
+    <Content Include="Views\PDF\PdfSupplier.cshtml" />
+    <Content Include="Views\PDF\PdfUnitBase.cshtml" />
+    <Content Include="Views\ErrorPage\ErrorMessage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

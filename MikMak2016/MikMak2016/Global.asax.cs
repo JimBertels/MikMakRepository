@@ -18,12 +18,18 @@ namespace MikMak2016
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
-        protected void Application_BeginRequest()
-        {
+        //protected void Application_BeginRequest()
+        //{
+        //    Response.Cache.SetCacheability(HttpCacheability.NoCache);
+        //    Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
+        //    Response.Cache.SetNoStore();
+        //}
 
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
-            Response.Cache.SetNoStore();
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            Exception Exc = Server.GetLastError();
+            Server.ClearError();
+            Response.Redirect("/Errorpage/ErrorMessage");
         }
     }
 }

@@ -11,6 +11,9 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <p>
+    @Html.ActionLink("Résumé Pdf", "GeneratePDF", "PDF", new { path = "Article" }, null)
+</p>
+<p>
     @using(Html.BeginForm("Index","Article",FormMethod.Get))
     { 
     <b>Search by:</b> @Html.RadioButton("searchBy", "Number", true) <text> Number</text>

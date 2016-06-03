@@ -8,7 +8,18 @@
 
 <p>@Html.ActionLink("Page d'accueil", "Index", "Home")</p>
 <p>
+    @Html.ActionLink("Résumé Pdf", "GeneratePDF", "PDF", new { path = "ArticleType" }, null)
+</p>
+<p>
     @Html.ActionLink("Create New", "Create")
+</p>
+<p>
+    @using (Html.BeginForm("Index", "ArticleType", FormMethod.Get))
+    {
+        <b>Search by:</b> @Html.RadioButton("searchBy", "Code", true) <text> Code</text>
+        @Html.RadioButton("searchBy", "Name") <text>Name</text><br />
+        @Html.TextBox("search") <input type="submit" value="search" />
+    }
 </p>
 <table class="table">
     <tr>
