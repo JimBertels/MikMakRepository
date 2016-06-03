@@ -40,6 +40,7 @@ namespace MikMak2016.App_Data.DAL
         [Required]
         [Display(Name = "Unité de base")]
         public int IdUnitBase { get; set; }
+        [Required]
         [Display(Name = "Prix Unité de base")]
         public string UnitPrice { get; set; }
         [Required]

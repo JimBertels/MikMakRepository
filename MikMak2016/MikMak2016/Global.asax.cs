@@ -18,11 +18,11 @@ namespace MikMak2016
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
-        protected void Application_Error(object sender, EventArgs e) // bij fout doorsturen naar foutpagina
-        {
-            Exception Exc = Server.GetLastError();
-            Server.ClearError();
-            Response.Redirect("/Errorpage/Errormessage");
-        }
+        //protected void Application_Error(object sender, EventArgs e) // bij fout doorsturen naar foutpagina
+        //{
+        //    Exception Exc = Server.GetLastError();
+        //    Server.ClearError();
+        //    Response.Redirect("/Errorpage/Errormessage");
+        //}
     }
 }

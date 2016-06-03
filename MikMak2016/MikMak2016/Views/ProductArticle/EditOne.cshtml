@@ -74,14 +74,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Confirmer" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Edit", new { id = @ViewBag.IdProd })
+<div class="returnlink">
+    @Html.ActionLink("Retourner à la liste d'articles", "Index")
 </div>
 
 @section Scripts {

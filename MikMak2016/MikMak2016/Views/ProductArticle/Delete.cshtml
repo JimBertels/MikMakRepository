@@ -4,30 +4,29 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2>Produits</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>ProductArticle</h4>
-    
-  
+<div class="form-horizontal">
+    <h4>Supprimer un article</h4>
+    <hr />
+
     <table class="table">
         <tr>
             <th>@Html.DisplayNameFor(model => model.IdProduct)</th>
             <th>@Html.DisplayNameFor(model => model.IdArticle)</th>
             <th>@Html.DisplayNameFor(model => model.Article.Number)</th>
             <th>@Html.DisplayNameFor(model => model.Article.Name)</th>
-            <th>@Html.DisplayNameFor(model => model.Quantity)</th>        
+            <th>@Html.DisplayNameFor(model => model.Quantity)</th>
             <th>@Html.DisplayNameFor(model => model.InsertedBy)</th>
             <th>@Html.DisplayNameFor(model => model.InsertedOn)</th>
             <th>@Html.DisplayNameFor(model => model.UpdatedBy)</th>
-            <th>@Html.DisplayNameFor(model => model.UpdatedOn)</th>        
-         </tr>
+            <th>@Html.DisplayNameFor(model => model.UpdatedOn)</th>
+        </tr>
 
         @foreach (var item in Model)
         {
             <tr>
-               <td>
+                <td>
                     @Html.DisplayFor(model => item.IdProduct)
                 </td>
                 <td>
@@ -57,13 +56,17 @@
             </tr>
         }
     </table>
-    @using (Html.BeginForm("DeleteConfirmed", "ProductArticle", new { id = @ViewBag.Id}))
+
+    @using (Html.BeginForm("DeleteConfirmed", "ProductArticle", new { id = @ViewBag.Id }))
     {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Delete" class="btn btn-default" /> 
         </div>
     }
+</div>
+
+<div class="returnlink">
+    @Html.ActionLink("Retourner à la liste d'articles", "Index")
 </div>

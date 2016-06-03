@@ -15,13 +15,43 @@ namespace MikMak2016.Controllers
     public class ProductArticleController : Controller
     {
         private MikMak2016Entities db = new MikMak2016Entities();
+        private const int PF = 8; // Id articletype PF
 
         // GET: /ProductArticle/
-        public ActionResult Index()
+
+        public ActionResult Index(string searchBy, string search, string sortBy)
         {
-            var articles = db.Article.Where(a => a.IdArticleType == 8);
+            ViewBag.SortNameParameter = string.IsNullOrEmpty(sortBy) ? "Name desc" : "";
+            ViewBag.SortNumberParameter = string.IsNullOrEmpty(sortBy) ? "Number desc" : "";
+
+            //var articleTypes = db.ArticleType.AsQueryable();
+            var articles = db.Article.Where(a => a.IdArticleType == PF).AsQueryable() ;
+
+            if (searchBy == "Number")
+            {
+                articles = articles.Where(x => x.Number.StartsWith(search) || search == null);
+            }
+            else
+            {
+                articles = articles.Where(x => x.Name.StartsWith(search) || search == null);
+            }
+
+            switch (sortBy)
+            {
+                case "Code desc":
+                    articles = articles.OrderByDescending(x => x.Number);
+                    break;
+                case "Name desc":
+                    articles = articles.OrderByDescending(x => x.Name);
+                    break;
+                default:
+                    articles = articles.OrderBy(x => x.Number);
+                    break;
+            }
+
             if (TempData["message"] != null)
                 ViewBag.Systeem = TempData["message"].ToString();
+
             return View(articles.ToList());
         }
 
@@ -90,7 +120,7 @@ namespace MikMak2016.Controllers
             {
                 return HttpNotFound();
             }
-
+           
             var article = db.Article.Find(id);
             ViewBag.IdProd = id;
             ViewBag.ProdName = article.Number + "-" + article.Name;

@@ -7,19 +7,19 @@
 <h2>Create</h2>
 <h2>Article produit: @ViewBag.ProdName</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>ProductArticle</h4>
+        <h4>Créer un produit</h4>
         <hr />
         @Html.ValidationSummary(true)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Id, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Id, new { @Value = ViewBag.Id, @readonly = true }) 
+            @Html.LabelFor(model => model.Id, new { @class = "control-label col-md-5" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Id, new { @Value = ViewBag.Id, @readonly = true })
             </div>
             <script type="text/javascript">
                 var element = document.getElementById("Id");
@@ -29,10 +29,11 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IdProduct, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div>
+                @Html.LabelFor(model => model.IdProduct, new { @class = "control-label col-md-5" })
+            </div>
+            <div class="col-md-6">
                 @Html.EditorFor(model => model.IdProduct, new { @Value = ViewBag.IdProd, @readonly = true }) ** ( @ViewBag.ProdName ) **
-                
             </div>
             <script type="text/javascript">
                 var element = document.getElementById("IdProduct");
@@ -42,65 +43,55 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IdArticle, "IdArticle", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div>
+                @Html.LabelFor(model => model.IdArticle, "IdArticle", new { @class = "control-label col-md-5" })
+            </div>
+            <div class="col-md-6">
                 @Html.DropDownList("IdArticle", String.Empty)
                 @Html.ValidationMessageFor(model => model.IdArticle)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Quantity, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div>
+                @Html.LabelFor(model => model.Quantity, new { @class = "control-label col-md-5" })
+            </div>
+            <div class="col-md-6">
                 @Html.EditorFor(model => model.Quantity)
                 @Html.ValidationMessageFor(model => model.Quantity)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.InsertedBy, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div>
+                @Html.LabelFor(model => model.InsertedBy, new { @class = "control-label col-md-5" })
+            </div>
+            <div class="col-md-6">
                 @Html.EditorFor(model => model.InsertedBy)
                 @Html.ValidationMessageFor(model => model.InsertedBy)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.InsertedOn, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div>
+                @Html.LabelFor(model => model.InsertedOn, new { @class = "control-label col-md-5" })
+            </div>
+            <div class="col-md-6">
                 @Html.EditorFor(model => model.InsertedOn)
                 @Html.ValidationMessageFor(model => model.InsertedOn)
             </div>
         </div>
 
-        @*@Html.HiddenFor(model => model.UpdatedBy)
-        @Html.HiddenFor(model => model.UpdatedOn)*@
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.UpdatedBy, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UpdatedBy)
-                @Html.ValidationMessageFor(model => model.UpdatedBy)
-            </div>
-        </div>
-
         <div class="form-group">
-            @Html.LabelFor(model => model.UpdatedOn, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UpdatedOn)
-                @Html.ValidationMessageFor(model => model.UpdatedOn)
-            </div>
-        </div>*@
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="col-md-12 text-center">
+                <input type="submit" value="Créer" class="btn btn-primary" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to article", "Edit", new { id = @ViewBag.IdProd })
+<div class="returnlink">
+    @Html.ActionLink("Retourner à la liste des produits", "Index")
 </div>
 
 @section Scripts {

@@ -1,16 +1,20 @@
 ﻿@model IEnumerable<MikMak2016.App_Data.DAL.Article>
 
+<h2 style="text-align:center">Factory System MikMak 2016 </h2>
+<h3 style="text-align:center">Liste des article généré le @ViewBag.Date.ToString("dd/MM/yyyy").</h3>
+<br />
+
 <table class="table">
     <tr>
-        <td>
+        <th>
             @Html.DisplayNameFor(model => model.Name)
-        </td>        
-        <td>
+        </th>        
+        <th>
             @Html.DisplayNameFor(model => model.Number)
-        </td>
-        <td>
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.StandardCost)
-        </td>
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Breadth)
         </th>

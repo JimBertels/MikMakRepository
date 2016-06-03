@@ -10,7 +10,7 @@
 
 <h2>Details</h2>
 <div>
-    <h4>ProductArticle</h4>
+    <h4>Nom du produit: @ViewBag.NameNrProd</h4>
     <hr />
     <table class="table">
         <tr>
@@ -43,10 +43,6 @@
             </th>
         </tr>
 
-        <tr>
-            <td colspan="5">@ViewBag.NameNrProd</td>
-        </tr>
-
         @foreach (var type in AT)
         {
             bool flagType = true;
@@ -58,7 +54,8 @@
                 {
                     if (flagType == true)
                     {
-                        <tr>
+                        <tr style="border-bottom:1pt solid black;"></tr>
+                        <tr style="font-weight: bold">
                             <td colspan="9"> Type: @type.Name</td>
                         </tr>
                         flagTot = true;
@@ -122,36 +119,41 @@
                 }
             }
             if (flagTot == true)
-            { 
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                    @subtotal
-                </td>
-            </tr>
+            {
+                <tr style="border-bottom:1pt solid black;"></tr>
+                <tr style="font-weight: bold">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Subtotal</td>
+                    <td>
+                        @subtotal.ToString("#,##0.00")
+                    </td>
+                </tr>
                 flagTot = false;
             }
         }
 
         <tr style="border-bottom:1pt solid black;"></tr>
         <tr style="font-weight: bold">
-            <td colspan="3">Grand total</td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
+            <td></td>
+            <td>Grand total</td>
             <td>@endtotal</td>
         </tr>
 
     </table>
 </div>
 
-<p>
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div class="returnlink">
+    @Html.ActionLink("Retourner à la liste d'articles", "Index")
+</div>

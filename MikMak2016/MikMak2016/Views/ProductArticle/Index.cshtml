@@ -4,12 +4,19 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2 >
+<h2>Liste des produits finis</h2>
+
+<input class="" type="button" onclick="location.href='@Url.Action("Index", "Home")'" value="Page d'accueil" />
+<input class="" type="button" onclick="location.href='@Url.Action("GeneratePDF", "PDF", new { path = "ProductArticle" }, null)'" value="Liste des produits finis en PDF">
 
 <p>
-    @Html.ActionLink("Résumé Pdf", "GeneratePDF", "PDF", new { path = "ProductArticle" }, null)
+    @using (Html.BeginForm("Index", "ProductArticle", FormMethod.Get))
+    {
+        <b>Search by:</b> @Html.RadioButton("searchBy", "Number", true) <text> Number</text>
+        @Html.RadioButton("searchBy", "Name") <text>Name</text><br />
+        @Html.TextBox("search") <input type="submit" value="search" />
+    }
 </p>
-
 
 @using (Html.BeginForm())
 {
@@ -17,10 +24,10 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Number)
+                @Html.ActionLink("Number", "Index", new { sortBy = ViewBag.SortNumberParameter, searchBy = Request.QueryString["searchBy"], search = Request["search"] })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.ActionLink("Name", "Index", new { sortBy = ViewBag.SortNameParameter, searchBy = Request.QueryString["searchBy"], search = Request["search"] })
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.InsertedBy)
@@ -59,14 +66,15 @@
                 @Html.DisplayFor(modelItem => item.UpdatedOn)
             </td>
             <td>
-                <button class="btn-warning">@Html.ActionLink("Editer", "Edit", new { id = item.Id })</button>
-                <button class="btn-primary">@Html.ActionLink("Details", "Details", new { id = item.Id }) </button>
-                <button class="btn-danger">@Html.ActionLink("Supprimer", "Delete", new { id = item.Id })</button>
+                <input class="btn-warning" type="button" onclick="location.href='@Url.Action("Edit", "ProductArticle", new { id = item.Id })'" value="Editer" />
+                <input class="btn-primary" type="button" onclick="location.href='@Url.Action("Details", "ProductArticle", new { id = item.Id })'" value="Détails" />
+                <input class="btn-danger" type="button" onclick="location.href='@Url.Action("Delete", "ProductArticle", new { id = item.Id })'" value="Supprimer" />
             </td> 
         </tr>
     }
     </table>
 }
+
 <div class="text-danger">
     @ViewBag.systeem
 </div>

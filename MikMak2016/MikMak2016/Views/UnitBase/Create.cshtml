@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Unités de base</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,66 +12,65 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>UnitBase</h4>
+        <h4>Créer une nouvelle unité de base</h4>
         <hr />
+
         @Html.ValidationSummary(true)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Id, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @* @Html.EditorFor(model => model.Id)
-                @Html.ValidationMessageFor(model => model.Id)*@
+            @Html.LabelFor(model => model.Id, new { @class = "control-label col-md-5" })
+            <div class="col-md-6">
                 @Html.EditorFor(model => model.Id, new { @Value = ViewBag.Id, @readonly = true })
             </div>
             <script type="text/javascript">
                 var element = document.getElementById("Id");
+                element.value = @ViewBag.Id;
                 element.setAttribute("readonly");
-                element.value = @ViewBag.Id;       
             </script>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Code, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @Html.LabelFor(model => model.Code, new { @class = "control-label col-md-5" })
+            <div class="col-md-6">
                 @Html.EditorFor(model => model.Code)
                 @Html.ValidationMessageFor(model => model.Code)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-5" })
+            <div class="col-md-6">
                 @Html.EditorFor(model => model.Name)
                 @Html.ValidationMessageFor(model => model.Name)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.InsertedBy, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @Html.LabelFor(model => model.InsertedBy, new { @class = "control-label col-md-5" })
+            <div class="col-md-6">
                 @Html.EditorFor(model => model.InsertedBy)
                 @Html.ValidationMessageFor(model => model.InsertedBy)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.InsertedOn, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @Html.LabelFor(model => model.InsertedOn, new { @class = "control-label col-md-5" })
+            <div class="col-md-6">
                 @Html.EditorFor(model => model.InsertedOn)
                 @Html.ValidationMessageFor(model => model.InsertedOn)
             </div>
         </div>
 
-       <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+        <div class="form-group">
+            <div class="col-md-12 text-center">
+                <input type="submit" value="Créer" class="btn btn-primary" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<div class="returnlink">
+    @Html.ActionLink("Retourner à la liste des unités de base", "Index")
 </div>
 
 @section Scripts {

@@ -4,11 +4,10 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
-<h4>ProductArticle</h4>
-<h2>Article produit: @ViewBag.ProdName</h2>
+<h2>Composition des produits</h2>
+<h3>Nom du produit: @ViewBag.ProdName</h3>
 
-<table>
+<table class="table">
     <tr>
         <th class="col-md-2">@Html.DisplayNameFor(model => model.Article.Number)</th>
         <th class="col-md-2">@Html.DisplayNameFor(model => model.Article.Name)</th>
@@ -16,9 +15,11 @@
         <th class="col-md-2">@Html.DisplayNameFor(model => model.Article.UnitPrice)</th>
         <th class="col-md-2">@Html.DisplayNameFor(model => model.UpdatedBy)</th>
         <th class="col-md-2">@Html.DisplayNameFor(model => model.UpdatedOn)</th>
-
+        <th>Action</th>
+        <th></th>
         <th></th>
     </tr>
+
     @foreach (var item in Model)
     {
         <tr>
@@ -40,17 +41,21 @@
             <td>
                 @Html.DisplayFor(model => item.UpdatedOn)
             </td>
-            <td>
-                @Html.ActionLink("Edit", "EditOne", new { id = item.Id })|
-                @Html.ActionLink("Delete", "DeleteOne", new { id = item.Id })
+            <td colspan="3">
+                <button class="btn-warning">@Html.ActionLink("Editer", "EditOne", new { id = item.Id })</button>
+                <button class="btn-danger">@Html.ActionLink("Supprimer", "DeleteOne", new { id = item.Id })</button>
             </td>
         </tr>
     }
 </table>
 
-<div>
-    @Html.ActionLink("Back to List", "Index") |
-    @Html.ActionLink("Add", "Create", new { id = ViewBag.IdProd })
+<div class="col-md-12 text-center">
+    <button class="btn-warning">@Html.ActionLink("Ajouter des articles", "Create", new { id = ViewBag.IdProd })</button>
+</div>
+
+<hr />
+<div class="returnlink">
+    @Html.ActionLink("Retourner à la liste d'articles", "Index")
 </div>
 
 @section Scripts {

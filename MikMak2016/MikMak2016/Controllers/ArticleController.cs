@@ -151,8 +151,11 @@ namespace MikMak2016.Controllers
         public ActionResult Edit([Bind(Include = "Number,StandardCost,Name,Breadth,GrossWeight,IdArticleType,RestockingTerm,IdUnitBase,UnitPrice,IdSupplier,Image,Id,InsertedBy,InsertedOn,UpdatedBy,UpdatedOn")] Article article)
         {
             string img = article.Image;
-            String[] imgName = img.Split('\\');
-            article.Image = imgName[imgName.Count() - 1];
+            if (!String.IsNullOrEmpty(img))
+            {
+                String[] imgName = img.Split('\\');
+                article.Image = imgName[imgName.Count() - 1];
+            }
 
             if (ModelState.IsValid)
             {

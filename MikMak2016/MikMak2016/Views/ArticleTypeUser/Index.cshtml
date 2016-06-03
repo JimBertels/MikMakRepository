@@ -6,8 +6,8 @@
 
 <h2>Liste des types d'article</h2>
 
-<button>@Html.ActionLink("Page d'accueil", "IndexUser", "Home")</button>
-<button>@Html.ActionLink("Liste des types d'article en PDF", "GeneratePDF", "PDF", new { path = "ArticleType" }, null)</button>
+<input class="" type="button" onclick="location.href='@Url.Action("IndexUser", "Home")'" value="Page d'accueil" />
+<input class="" type="button" onclick="location.href='@Url.Action("GeneratePDF", "PDF", new { path = "ArticleType" }, null)'" value="Liste des types d'article en PDF">
 
 <p>
     @using (Html.BeginForm("Index", "ArticleTypeUser", FormMethod.Get))
@@ -17,18 +17,15 @@
         @Html.TextBox("search") <input type="submit" value="search" />
     }
 </p>
-
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Code)
+            @Html.ActionLink("Code", "Index", new { sortBy = ViewBag.SortNumberParameter, searchBy = Request.QueryString["searchBy"], search = Request["search"] })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.ActionLink("Name", "Index", new { sortBy = ViewBag.SortNameParameter, searchBy = Request.QueryString["searchBy"], search = Request["search"] })
         </th>
-        <th>
-            Action
-        </th>
+        <th>Action</th>
     </tr>
 
     @foreach (var item in Model)
@@ -41,12 +38,12 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                <button class="btn-primary">@Html.ActionLink("Details", "Details", new { id = item.Id }) </button>
+                <input class="btn-primary" type="button" onclick="location.href='@Url.Action("Details", "ArticleTypeUser", new { id = item.Id })'" value="Détail" />
             </td>
         </tr>
     }
-
 </table>
+
 <div class="text-danger">
     @ViewBag.systeem
 </div>

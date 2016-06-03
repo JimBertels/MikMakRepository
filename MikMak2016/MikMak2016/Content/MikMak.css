@@ -15,6 +15,41 @@ body {
     height: 100%;
 }
 
+/* BUTTONS */
+.btn-warning {
+    background-color: rgba(251, 162, 0, 0.20);
+    border: 1px;
+    border-style: solid;
+    border-color: orange;
+}
+
+.btn-danger {
+    background-color: rgba(255, 0, 0, 0.20);
+    border: 1px;
+    border-style: solid;
+    border-color: red;
+}
+
+.btn-primary {
+    background-color: rgba(0, 0, 255, 0.20);
+    border: 1px;
+    border-style: solid;
+    border-color: blue;
+}
+
+.btn-block {
+    background-color: rgba(0, 0, 0, 0.45);
+    border: 1px;
+    border-style: solid;
+    border-color: white;
+    border-radius: 5%;
+}
+
+    .btn-block:hover {
+        background-color: rgba(0, 0, 0, 0.55);
+        color: white;
+    }
+
 /* LOGIN SCREEN */
 .log-in {
     background-image: url(../Content/Images/image1.jpg);
@@ -25,6 +60,14 @@ body {
     border-color: white;
     border-width: 2px;
     text-align: center;
+}
+
+.title {
+    padding-top: 0.5em;
+}
+
+.btn-log-in {
+    padding-bottom: 0.5em;
 }
 
 /* JUMBOTRON */
@@ -56,18 +99,41 @@ body {
     color: black;
 }
 
-.row button {
-    background-image: url(../Content/Images/image1.jpg);
-    border: solid;
-    border-width: 2px;
-    border-color: white;
-    border-radius: 5%;
-    color: white;
-    font-size: 1.5em;
-    font-weight: bold;
-    padding: 0.2em;
+.row {
+    width: 100%;
 }
 
+    .row button {
+        background-image: url(../Content/Images/image1.jpg);
+        border: solid;
+        border-width: 2px;
+        border-color: white;
+        border-radius: 5%;
+        color: white;
+        font-size: 1.5em;
+        font-weight: bold;
+        padding-left: 1.5em;
+        padding-right: 1.5em;
+    }
+
+        .row button:hover {
+            background-color: rgba(0, 0, 0, 0.55);
+            color: white;
+        }
+
+/*        .row button:active {
+            color: green;
+        }
+
+        .row button:link {
+            color: yellow;
+        }
+
+        .row button:visited {
+            color: cyan;
+        }*/
+
+/* TABLES */
 .table {
     width: 100%;
     border-collapse: collapse;
@@ -80,6 +146,18 @@ body {
         font-weight: bold;
         font-style: italic;
     }
+
+        .table th a:link {
+            color: black;
+        }
+
+        .table th a:visited {
+            color: black;
+        }
+
+         .table th a:hover {
+            color: lightblue;
+        }
 
     .table td {
         padding: 7px;
@@ -100,84 +178,51 @@ body {
             background: #dae5f4;
         }
 
-        .btn-warning {
-            background-color: transparent;
-            border: 1px;
-            border-style: solid;
-            border-color: orange;
-        }
-
-        .btn-danger {
-            background-color: transparent;
-            border: 1px;
-            border-style: solid;
-            border-color: red;
-        }
-
-        .btn-primary {
-            background-color: transparent;
-            border: 1px;
-            border-style: solid;
-            border-color: blue;
-        }
-
-/*LOGIN SCREEN*/
-.login {
-    background-image: url(../Content/Images/cute-little-fat-yellow-easter-chicken.jpg);
-    border: solid;
-    border-width: 2px;
-    width: 50%;
-    margin-top: 2em;
-    align-content: center;
-}
-
-    .login div {
-        padding-left: 1em;
-        padding-bottom: 0.5em;
-    }
-
-    .login input {
-        padding-left: 1em;
-        padding-bottom: 0.5em;
-    }
-
-/*FORMS*/
+/* FORMS */
+/* CREATE, EDIT en DELETE FORM */
 .form-horizontal {
-    /*background-image: url(../Content/Images/500_F_90064613_CZ6f2K2Z2Rj3FcoagfGIpGGm9PCyIIIL.jpg);*/
-    background-color: rgba(81, 134, 219, 0.48);
+    background-color: rgba(81, 134, 219, 0.25);
     border: solid;
-    border-color: white;
+    border-color: black;
     border-width: 2px;
     border-radius: 2%;
-    width: 50%;
-    margin-top: 1em;
+    width: 60%;
+    margin-top: 0.5em;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 6em;
-    padding-right: 6em;
+    padding-left: 2em;
+    padding-right: 2em;
 }
 
     .form-horizontal h4 {
         font-size: 2em;
         color: black;
         font-weight: bold;
-        font-style: italic;
         -webkit-text-stroke-width: 1px;
         -webkit-text-stroke-color: white;
     }
 
-.col-md-4 {
-    font-size: 1em;
-    color: white;
+    .form-horizontal p {
+        font-size: 1em;
+        color: red;
+        font-weight: bold;        
+    }
+
+.col-md-5 {
+    margin-left: 2em;
     font-weight: bold;
-    font-style: italic;    
+    text-align: right;
+}
+
+.col-md-6 {
+    font-weight: bold;
 }
 
 .returnlink {
     text-align: center;
 }
 
-/*COPYRIGHT FOOTER*/
+/* COPYRIGHT FOOTER */
 .footer {
     margin-top: 20em;
     text-align: center;

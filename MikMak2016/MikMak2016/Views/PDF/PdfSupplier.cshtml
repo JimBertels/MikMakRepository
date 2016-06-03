@@ -4,9 +4,9 @@
     ViewBag.Title = "Résumé des fournisseurs";
 }
 
-<h2>Résumé des fournisseurs</h2>
-<h4>sur @ViewBag.Date</h4>
-
+<h2 style="text-align:center">Factory System MikMak 2016 </h2>
+<h3 style="text-align:center">Liste des fournisseurs généré le @ViewBag.Date.ToString("dd/MM/yyyy").</h3>
+<br />
 
 <table class="table">
     <tr>
@@ -52,7 +52,6 @@
         <th>
             @Html.DisplayNameFor(model => model.UpdatedOn)
         </th>
-        <th></th>
     </tr>
 
     @if (Model.Count() == 0)

@@ -1,7 +1,6 @@
 ﻿@using PagedList;
 @using PagedList.Mvc;
 
-@*model moet ipagedlist ipv ienumerable zijn want dat is wat er wordt teruggegeven*@
 @model IPagedList<MikMak2016.App_Data.DAL.Article>
 
 @{
@@ -10,8 +9,8 @@
 
 <h2>Liste d'articles</h2>
 
-<button>@Html.ActionLink("Page d'accueil", "IndexUser", "Home")</button>
-<button>@Html.ActionLink("Liste des articles en PDF", "GeneratePDF", "PDF", new { path = "Article" }, null)</button>
+<input class="" type="button" onclick="location.href='@Url.Action("IndexUser", "Home")'" value="Page d'accueil" />
+<input class="" type="button" onclick="location.href='@Url.Action("GeneratePDF", "PDF", new { path = "Article" }, null)'" value="Liste des articles en PDF">
 
 <p>
     @using (Html.BeginForm("Index", "ArticleUser", FormMethod.Get))
@@ -25,10 +24,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.First().Number)
+            @Html.ActionLink("Code", "Index", new { sortBy = ViewBag.SortNumberParameter, searchBy = Request.QueryString["searchBy"], search = Request["search"] })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().Name)
+            @Html.ActionLink("Name", "Index", new { sortBy = ViewBag.SortNameParameter, searchBy = Request.QueryString["searchBy"], search = Request["search"] })
         </th>
         <th>Action</th>
     </tr>
@@ -43,16 +42,17 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                <button class="btn-primary">@Html.ActionLink("Details", "Details", new { id = item.Id }) </button>
+                <input class="btn-primary" type="button" onclick="location.href='@Url.Action("Details", "ArticleUser", new { id = item.Id })'" value="Détail" />
             </td>
         </tr>
     }
-
 </table>
+
 <div class="text-danger">
     @ViewBag.systeem
 </div>
+
 @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchBy = Request.QueryString["searchBy"], search = Request.QueryString["search"] }),
     new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded }
 )
-@*Request.Qurystring zorgt ervoor dat de search(by) query in url behouden blijft als je ander pagina selecteerd*@
+@*Request.Querystring zorgt ervoor dat de search(by) query in url behouden blijft als je andere pagina selecteert*@

@@ -4,141 +4,167 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2>Articles</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Article</h4>
+<div class="form-horizontal">
+    <h4>Supprimer un article</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
+    
+    <div class="form-group">
+        <div class="col-md-5">
             @Html.DisplayNameFor(model => model.Number)
-        </dt>
-
-        <dd>
+        </div>
+        <div class="col-md-6">
             @Html.DisplayFor(model => model.Number)
-        </dd>
+        </div>
+    </div>
 
-        <dt>
+    <div class="form-group">
+        <div class="col-md-5">
             @Html.DisplayNameFor(model => model.StandardCost)
-        </dt>
-
-        <dd>
+        </div>
+        <div class="col-md-6">
             @Html.DisplayFor(model => model.StandardCost)
-        </dd>
+        </div>
+    </div>
 
-        <dt>
+    <div class="form-group">
+        <div class="col-md-5">
             @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
+        </div>
+        <div class="col-md-6">
             @Html.DisplayFor(model => model.Name)
-        </dd>
+        </div>
+    </div>
 
-        <dt>
+    <div class="form-group">
+        <div class="col-md-5">
             @Html.DisplayNameFor(model => model.Breadth)
-        </dt>
-
-        <dd>
+        </div>
+        <div class="col-md-6">
             @Html.DisplayFor(model => model.Breadth)
-        </dd>
+        </div>
+    </div>
 
-        <dt>
+    <div class="form-group">
+        <div class="col-md-5">
             @Html.DisplayNameFor(model => model.GrossWeight)
-        </dt>
-
-        <dd>
+        </div>
+        <div class="col-md-6">
             @Html.DisplayFor(model => model.GrossWeight)
-        </dd>
+        </div>
+    </div>
 
-        <dt>
+    <div class="form-group">
+        <div class="col-md-5">
             @Html.DisplayNameFor(model => model.RestockingTerm)
-        </dt>
-
-        <dd>
+        </div>
+        <div class="col-md-6">
             @Html.DisplayFor(model => model.RestockingTerm)
-        </dd>
+        </div>
+    </div>
 
-        <dt>
+    <div class="form-group">
+        <div class="col-md-5">
             @Html.DisplayNameFor(model => model.UnitPrice)
-        </dt>
-
-        <dd>
+        </div>
+        <div class="col-md-6">
             @Html.DisplayFor(model => model.UnitPrice)
-        </dd>
+        </div>
+    </div>
 
-        <dt>
+    <div class="form-group">
+        <div class="col-md-5">
             @Html.DisplayNameFor(model => model.Image)
-        </dt>
-
-        <dd>
+        </div>
+        <div class="col-md-6">
             @Html.DisplayFor(model => model.Image)
-        </dd>
+        </div>
+    </div>
 
-        <dt>
+    <div class="form-group">
+        <div class="col-md-5">
             @Html.DisplayNameFor(model => model.InsertedBy)
-        </dt>
-
-        <dd>
+        </div>
+        <div class="col-md-6">
             @Html.DisplayFor(model => model.InsertedBy)
-        </dd>
+        </div>
+    </div>
 
-        <dt>
+    <div class="form-group">
+        <div class="col-md-5">
             @Html.DisplayNameFor(model => model.InsertedOn)
-        </dt>
-
-        <dd>
+        </div>
+        <div class="col-md-6">
             @Html.DisplayFor(model => model.InsertedOn)
-        </dd>
+        </div>
+    </div>
 
-        <dt>
+    <div class="form-group">
+        <div class="col-md-5">
             @Html.DisplayNameFor(model => model.UpdatedBy)
-        </dt>
-
-        <dd>
+        </div>
+        <div class="col-md-6">
             @Html.DisplayFor(model => model.UpdatedBy)
-        </dd>
+        </div>
+    </div>
 
-        <dt>
+    <div class="form-group">
+        <div class="col-md-5">
             @Html.DisplayNameFor(model => model.UpdatedOn)
-        </dt>
-
-        <dd>
+        </div>
+        <div class="col-md-6">
             @Html.DisplayFor(model => model.UpdatedOn)
-        </dd>
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ArticleType.Code)
-        </dt>
-
-        <dd>
+    <div class="form-group">
+        <div class="col-md-5">
+            @Html.DisplayNameFor(model => model.ArticleType.Code) Type d'article
+        </div>
+        <div class="col-md-6">
             @Html.DisplayFor(model => model.ArticleType.Code)
-        </dd>
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Supplier.Code)
-        </dt>
-
-        <dd>
+    <div class="form-group">
+        <div class="col-md-5">
+            @Html.DisplayNameFor(model => model.Supplier.Code) Fournisseur
+        </div>
+        <div class="col-md-6">
             @Html.DisplayFor(model => model.Supplier.Code)
-        </dd>
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UnitBase.Code)
-        </dt>
+    <div class="form-group">
+        <div class="col-md-5">
+            @Html.DisplayNameFor(model => model.UnitBase.Code) Unité de base
+        </div>
+        <div class="col-md-6">
+            @Html.DisplayFor(model => model.UnitBase.Code) 
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.UnitBase.Code)
-        </dd>
+    <hr class="col-md-11 text-center" />
+    <p class="col-md-11 text-center">Veuillez confirmer la suppression. Cette action est irréversible!</p>
 
-    </dl>
-
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <div class="form-group">
+                <div class="col-md-11 text-center">
+                    <input type="submit" value="Confirmer" class="btn btn-danger" />
+                </div>
+            </div>
         </div>
     }
 </div>
+
+<div class="returnlink">
+    @Html.ActionLink("Retourner à la liste d'articles", "Index")
+</div>
+
+
+

@@ -4,63 +4,75 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Unités de base</h2>
 
-<div>
-    <h4>UnitBase</h4>
-	<hr />
-    <dl class="dl-horizontal">
-        <dt>
+<div class="form-horizontal">
+    <h4>Détails d'une unité de base</h4>
+    <hr />
+
+    <div class="form-group">
+        <div class="col-md-5">
             @Html.DisplayNameFor(model => model.Code)
-        </dt>
-
-        <dd>
+        </div>
+        <div class="col-md-6">
             @Html.DisplayFor(model => model.Code)
-        </dd>
+        </div>
+    </div>
 
-        <dt>
+    <div class="form-group">
+        <div class="col-md-5">
             @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
+        </div>
+        <div class="col-md-6">
             @Html.DisplayFor(model => model.Name)
-        </dd>
+        </div>
+    </div>
 
-        <dt>
+    <div class="form-group">
+        <div class="col-md-5">
             @Html.DisplayNameFor(model => model.InsertedBy)
-        </dt>
-
-        <dd>
+        </div>
+        <div class="col-md-6">
             @Html.DisplayFor(model => model.InsertedBy)
-        </dd>
+        </div>
+    </div>
 
-        <dt>
+    <div class="form-group">
+        <div class="col-md-5">
             @Html.DisplayNameFor(model => model.InsertedOn)
-        </dt>
-
-        <dd>
+        </div>
+        <div class="col-md-6">
             @Html.DisplayFor(model => model.InsertedOn)
-        </dd>
+        </div>
+    </div>
 
-        <dt>
+    <div class="form-group">
+        <div class="col-md-5">
             @Html.DisplayNameFor(model => model.UpdatedBy)
-        </dt>
-
-        <dd>
+        </div>
+        <div class="col-md-6">
             @Html.DisplayFor(model => model.UpdatedBy)
-        </dd>
+        </div>
+    </div>
 
-        <dt>
+    <div class="form-group">
+        <div class="col-md-5">
             @Html.DisplayNameFor(model => model.UpdatedOn)
-        </dt>
-
-        <dd>
+        </div>
+        <div class="col-md-6">
             @Html.DisplayFor(model => model.UpdatedOn)
-        </dd>
+        </div>
+    </div>
 
-    </dl>
+    <hr class="col-md-11 text-center" />
+
+    <div class="form-group">
+        <div class="col-md-11 text-center">
+            <input class="btn-warning" type="button" onclick="location.href='@Url.Action("Edit", "UnitBase", new { id = Model.Id })'" value="Editer" />
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Editer", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<div class="returnlink">
+    @Html.ActionLink("Retourner à la liste des unités de base", "Index")
+</div>

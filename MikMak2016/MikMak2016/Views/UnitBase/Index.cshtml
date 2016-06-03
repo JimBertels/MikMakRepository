@@ -5,10 +5,9 @@
 }
 
 <h2>Liste des unités de bases</h2>
-
-<button>@Html.ActionLink("Page d'accueil", "Index", "Home")</button>
-<button>@Html.ActionLink("Créer nouvelle unité de base", "Create")</button>
-<button>@Html.ActionLink("Liste des unités de base en PDF", "GeneratePDF", "PDF", new { path = "UnitBase" }, null)</button>
+<input class="" type="button" onclick="location.href='@Url.Action("Index", "Home")'" value="Page d'accueil" />
+<input class="" type="button" onclick="location.href='@Url.Action("Create", "UnitBase")'" value="Créer nouvelle unité de base">
+<input class="" type="button" onclick="location.href='@Url.Action("GeneratePDF", "PDF", new { path = "UnitBase" }, null)'" value="Liste des unités de base en PDF">
 
 <p>
     @using (Html.BeginForm("Index", "UnitBase", FormMethod.Get))
@@ -18,13 +17,14 @@
         @Html.TextBox("search") <input type="submit" value="search" />
     }
 </p>
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Code)
+            @Html.ActionLink("Code", "Index", new { sortBy = ViewBag.SortNumberParameter, searchBy = Request.QueryString["searchBy"], search = Request["search"] })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.ActionLink("Name", "Index", new { sortBy = ViewBag.SortNameParameter, searchBy = Request.QueryString["searchBy"], search = Request["search"] })
         </th>
         <th>
             Action
@@ -41,9 +41,9 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                <button class="btn-warning">@Html.ActionLink("Editer", "Edit", new { id = item.Id })</button>
-                <button class="btn-primary">@Html.ActionLink("Details", "Details", new { id = item.Id }) </button>
-                <button class="btn-danger">@Html.ActionLink("Supprimer", "Delete", new { id = item.Id })</button>
+                <input class="btn-warning" type="button" onclick="location.href='@Url.Action("Edit", "UnitBase", new { id = item.Id })'" value="Editer" />
+                <input class="btn-primary" type="button" onclick="location.href='@Url.Action("Details", "UnitBase", new { id = item.Id })'" value="Détail" />
+                <input class="btn-danger" type="button" onclick="location.href='@Url.Action("Delete", "UnitBase", new { id = item.Id })'" value="Supprimer" />
             </td>
         </tr>
     }

@@ -7,16 +7,17 @@
 @using (Html.BeginForm())
 {
     <div class="log-in">
-        <div>@Html.LabelFor(Model => Model.Login)</div>
+        <div class="title">@Html.LabelFor(Model => Model.Login)</div>
         <hr />
-        <div>@Html.LabelFor(Model=>Model.Name)</div>
-        @*<div>@Html.Label("Nom d'utilisateur")</div>*@
+        <div>@Html.LabelFor(Model => Model.Name)</div>
         <div>@Html.TextBox("name") </div>
-        <div>@Html.LabelFor(Model=>Model.Password)</div>
-        @*<div>@Html.Label("Mot de passe")</div>*@
-        @*<div>@Html.TextBox("password")</div>*@
+        <div>@Html.LabelFor(Model => Model.Password)</div>
         <div>@Html.PasswordFor(model => model.Password)</div>
         <hr />
-        <input type="submit" value="Confirmer" />
+        <div class="btn-log-in">
+            <center>
+                <input class="btn-block" type="submit" value="Confirmer" />
+            </center>
+        </div>
     </div>
 }

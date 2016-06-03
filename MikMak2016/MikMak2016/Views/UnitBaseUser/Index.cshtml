@@ -6,8 +6,8 @@
 
 <h2>Liste des unités de bases</h2>
 
-<button>@Html.ActionLink("Page d'accueil", "IndexUser", "Home")</button>
-<button>@Html.ActionLink("Liste des unités de base en PDF", "GeneratePDF", "PDF", new { path = "UnitBase" }, null)</button>
+<input class="" type="button" onclick="location.href='@Url.Action("IndexUser", "Home")'" value="Page d'accueil" />
+<input class="" type="button" onclick="location.href='@Url.Action("GeneratePDF", "PDF", new { path = "UnitBase" }, null)'" value="Liste des unités de base en PDF">
 
 <p>
     @using (Html.BeginForm("Index", "UnitBaseUser", FormMethod.Get))
@@ -17,13 +17,14 @@
         @Html.TextBox("search") <input type="submit" value="search" />
     }
 </p>
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Code)
+            @Html.ActionLink("Code", "Index", new { sortBy = ViewBag.SortNumberParameter, searchBy = Request.QueryString["searchBy"], search = Request["search"] })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.ActionLink("Name", "Index", new { sortBy = ViewBag.SortNameParameter, searchBy = Request.QueryString["searchBy"], search = Request["search"] })
         </th>
         <th>
             Action
@@ -40,7 +41,7 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                <button class="btn-primary">@Html.ActionLink("Details", "Details", new { id = item.Id }) </button>
+                <input class="btn-primary" type="button" onclick="location.href='@Url.Action("Details", "UnitBaseUser", new { id = item.Id })'" value="Détail" />
             </td>
         </tr>
     }
