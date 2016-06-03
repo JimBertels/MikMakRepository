@@ -11,16 +11,30 @@ namespace MikMak2016.App_Data.DAL
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    
     
     public partial class ProductArticle
     {
+        [Required]
+        [Display(Name="Produit")]
         public int IdProduct { get; set; }
+        [Required]
+        [Display(Name = "Article")]
         public int IdArticle { get; set; }
-        public int Id { get; set; }
+        [Required]
+        [Display(Name = "Quantité")]
         public string Quantity { get; set; }
+        [Key]
+        [Required]
+        public int Id { get; set; }
+        [Display(Name = "Inséré par")]
         public string InsertedBy { get; set; }
+        [Display(Name = "Inséré le")]
         public string InsertedOn { get; set; }
+        [Display(Name = "Mis à jour par")]
         public string UpdatedBy { get; set; }
+        [Display(Name = "Mis à jour le")]
         public string UpdatedOn { get; set; }
     
         public virtual Article Article { get; set; }

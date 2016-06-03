@@ -11,31 +11,55 @@ namespace MikMak2016.App_Data.DAL
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Article
     {
         public Article()
         {
             this.ProductArticle = new HashSet<ProductArticle>();
         }
-    
+
+        [Required]
+        [Display(Name="Numéro")]
         public string Number { get; set; }
+        [Display(Name = "Coût standard")]
         public string StandardCost { get; set; }
+        [Required]
+        [Display(Name = "Nom")]
         public string Name { get; set; }
+        [Display(Name = "Laize")]
         public string Breadth { get; set; }
+        [Display(Name = "Brut")]
         public string GrossWeight { get; set; }
+        [Required]
+        [Display(Name = "Type d'article")]
         public int IdArticleType { get; set; }
+        [Display(Name = "Delai de réapprovisionnement")]
         public string RestockingTerm { get; set; }
+        [Required]
+        [Display(Name = "Unité de base")]
         public int IdUnitBase { get; set; }
+        [Display(Name = "Prix Unité de base")]
         public string UnitPrice { get; set; }
+        [Required]
+        [Display(Name = "Fournisseur")]
         public int IdSupplier { get; set; }
+        [Display(Name = "Image")]
+        [DataType(DataType.ImageUrl)]
         public string Image { get; set; }
+        [Key]
+        [Required]
         public int Id { get; set; }
+        [Display(Name = "Inséré par")]
         public string InsertedBy { get; set; }
+        [Display(Name = "Inséré le")]
         public string InsertedOn { get; set; }
+        [Display(Name = "Mis à jour par")]
         public string UpdatedBy { get; set; }
+        [Display(Name = "Mis à jour le")]
         public string UpdatedOn { get; set; }
-    
+
         public virtual ArticleType ArticleType { get; set; }
         public virtual Supplier Supplier { get; set; }
         public virtual UnitBase UnitBase { get; set; }

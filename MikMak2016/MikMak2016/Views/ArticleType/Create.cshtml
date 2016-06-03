@@ -35,9 +35,13 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Id, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Id)
-                @Html.ValidationMessageFor(model => model.Id)
+                  @Html.EditorFor(model => model.Id, new { @Value = ViewBag.Id, @readonly = true })
             </div>
+            <script type="text/javascript">
+                  var element = document.getElementById("Id");
+                  element.value = @ViewBag.Id;
+                  element.setAttribute("readonly");
+            </script>
         </div>
 
         <div class="form-group">

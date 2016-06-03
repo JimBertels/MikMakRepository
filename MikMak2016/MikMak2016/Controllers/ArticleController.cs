@@ -15,7 +15,8 @@ namespace MikMak2016.Controllers
     public class ArticleController : Controller
     {
         private MikMak2016Entities db = new MikMak2016Entities();
-
+        private static int aantalPages = 10;
+  
         // GET: /Article/
         public ActionResult Index(string searchBy, string search, string sortBy, int? page) //int? = nullable --> bij eerste bezoek pagina nog nul
         {
@@ -45,9 +46,16 @@ namespace MikMak2016.Controllers
                 default:
                     articles = articles.OrderBy(x => x.Number);
                     break;
-            }
-            return View(articles.ToList().ToPagedList(page ?? 1, 10)); //page ?? 1 = als het 0 is gebruik 1. 2e parameter is aantal items/pagina
+            }    
+            
+            int pageSize = aantalPages;
+            int pageNumber = (page ?? 1);
+            if (TempData["message"] != null)
+                ViewBag.Systeem = TempData["message"].ToString();
+
+            return View(articles.ToList().ToPagedList(pageNumber, pageSize)); //page ?? 1 = als het 0 is gebruik 1. 2e parameter is aantal items/pagina
         }
+
 
         // GET: /Article/Details/5
         public ActionResult Details(int? id)
@@ -57,6 +65,9 @@ namespace MikMak2016.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Article article = db.Article.Find(id);
+            if (article.IdArticleType == 8)
+                ViewBag.Idproductarticle = db.ProductArticle.Where(art => art.IdArticle == id);
+
             if (article == null)
             {
                 return HttpNotFound();
@@ -65,11 +76,18 @@ namespace MikMak2016.Controllers
         }
 
         // GET: /Article/Create
+        [HttpGet]
         public ActionResult Create()
         {
+            var art = db.Article.OrderByDescending(a => a.Id).FirstOrDefault();
+            var index = art.Id;
+            index++;
+            ViewBag.Id = index;
+            ViewBag.IdArticle = new SelectList(db.Article, "Id", "Code");
             ViewBag.IdArticleType = new SelectList(db.ArticleType, "Id", "Code");
             ViewBag.IdSupplier = new SelectList(db.Supplier, "Id", "Code");
             ViewBag.IdUnitBase = new SelectList(db.UnitBase, "Id", "Code");
+
             return View();
         }
 
@@ -80,11 +98,25 @@ namespace MikMak2016.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Number,StandardCost,Name,Breadth,GrossWeight,IdArticleType,RestockingTerm,IdUnitBase,UnitPrice,IdSupplier,Image,Id,InsertedBy,InsertedOn,UpdatedBy,UpdatedOn")] Article article)
         {
+            string img = article.Image;
+            if (!String.IsNullOrEmpty(img))
+            {
+                String[] imgName = img.Split('\\');
+                article.Image = imgName[imgName.Count() - 1];
+            }
             if (ModelState.IsValid)
             {
                 db.Article.Add(article);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                TempData["message"] = "The article " + article.Name + " is created.";
+                if (article.IdArticleType == 8)
+                {
+                    ViewBag.IdArticleType = new SelectList(db.ArticleType, "Id", "Code", article.IdArticleType);
+                    ViewBag.IdSupplier = new SelectList(db.Supplier, "Id", "Code", article.IdSupplier);
+                    ViewBag.IdUnitBase = new SelectList(db.UnitBase, "Id", "Code", article.IdUnitBase);
+                    return RedirectToAction("Edit", "ProductArticle", new { id = article.Id });
+                }
+                else return RedirectToAction("Index");
             }
 
             ViewBag.IdArticleType = new SelectList(db.ArticleType, "Id", "Code", article.IdArticleType);
@@ -118,12 +150,18 @@ namespace MikMak2016.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Number,StandardCost,Name,Breadth,GrossWeight,IdArticleType,RestockingTerm,IdUnitBase,UnitPrice,IdSupplier,Image,Id,InsertedBy,InsertedOn,UpdatedBy,UpdatedOn")] Article article)
         {
+            string img = article.Image;
+            String[] imgName = img.Split('\\');
+            article.Image = imgName[imgName.Count() - 1];
+
             if (ModelState.IsValid)
             {
                 db.Entry(article).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["message"] = "The article " + article.Name + " is modified.";
                 return RedirectToAction("Index");
             }
+
             ViewBag.IdArticleType = new SelectList(db.ArticleType, "Id", "Code", article.IdArticleType);
             ViewBag.IdSupplier = new SelectList(db.Supplier, "Id", "Code", article.IdSupplier);
             ViewBag.IdUnitBase = new SelectList(db.UnitBase, "Id", "Code", article.IdUnitBase);
@@ -152,7 +190,15 @@ namespace MikMak2016.Controllers
         {
             Article article = db.Article.Find(id);
             db.Article.Remove(article);
+
+            var art = db.ProductArticle.Where(pa => pa.IdArticle == id);
+            foreach (var item in art)
+            {
+                db.ProductArticle.Remove(item);
+            }
+
             db.SaveChanges();
+            TempData["message"] = "The article " + article.Name + " is removed.";
             return RedirectToAction("Index");
         }
 

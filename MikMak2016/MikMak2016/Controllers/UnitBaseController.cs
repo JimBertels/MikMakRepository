@@ -43,8 +43,13 @@ namespace MikMak2016.Controllers
                     unitbases = unitbases.OrderBy(x => x.Code);
                     break;
             }
+
+            if (TempData["message"] != null)
+                ViewBag.Systeem = TempData["message"].ToString();
+
             return View(unitbases.ToList());
         }
+
 
         // GET: /UnitBase/Details/5
         public ActionResult Details(int? id)
@@ -64,6 +69,10 @@ namespace MikMak2016.Controllers
         // GET: /UnitBase/Create
         public ActionResult Create()
         {
+            var ub = db.UnitBase.OrderByDescending(o=>o.Id).FirstOrDefault();
+            var index = ub.Id;
+            index++;
+            ViewBag.Id = index;
             return View();
         }
 
@@ -77,10 +86,10 @@ namespace MikMak2016.Controllers
             if (ModelState.IsValid)
             {
                 db.UnitBase.Add(unitbase);
-                db.SaveChanges();
+                db.SaveChanges();            
+                TempData["message"] = "The unitbase " + unitbase.Name + " is created.";
                 return RedirectToAction("Index");
             }
-
             return View(unitbase);
         }
 
@@ -110,8 +119,10 @@ namespace MikMak2016.Controllers
             {
                 db.Entry(unitbase).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["message"] = "The unitbase " + unitbase.Name + " is modified.";
                 return RedirectToAction("Index");
             }
+
             return View(unitbase);
         }
 
@@ -138,6 +149,7 @@ namespace MikMak2016.Controllers
             UnitBase unitbase = db.UnitBase.Find(id);
             db.UnitBase.Remove(unitbase);
             db.SaveChanges();
+            TempData["message"] = "The unitbase " + unitbase.Name + " is removed.";
             return RedirectToAction("Index");
         }
 

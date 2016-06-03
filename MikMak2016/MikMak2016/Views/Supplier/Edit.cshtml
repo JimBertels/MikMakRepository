@@ -96,24 +96,10 @@
         </div>
 
         @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.InsertedBy)
+        @Html.HiddenFor(model => model.InsertedOn)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.InsertedBy, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.InsertedBy)
-                @Html.ValidationMessageFor(model => model.InsertedBy)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.InsertedOn, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.InsertedOn)
-                @Html.ValidationMessageFor(model => model.InsertedOn)
-            </div>
-        </div>
-
-        <div class="form-group">
+       <div class="form-group">
             @Html.LabelFor(model => model.UpdatedBy, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.UpdatedBy)

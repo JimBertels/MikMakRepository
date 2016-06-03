@@ -11,22 +11,32 @@ namespace MikMak2016.App_Data.DAL
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ArticleType
     {
         public ArticleType()
         {
             this.Article = new HashSet<Article>();
         }
-    
+
+        [Required]
         public string Code { get; set; }
+        [Required]
+        [Display(Name = "Nom")]
         public string Name { get; set; }
+        [Key]
+        [Required]
         public int Id { get; set; }
+        [Display(Name = "Inséré par")]
         public string InsertedBy { get; set; }
+        [Display(Name = "Inséré le")]
         public string InsertedOn { get; set; }
+        [Display(Name = "Mis à jour par")]
         public string UpdatedBy { get; set; }
+        [Display(Name = "Mis à jour le")]
         public string UpdatedOn { get; set; }
-    
+
         public virtual ICollection<Article> Article { get; set; }
     }
 }

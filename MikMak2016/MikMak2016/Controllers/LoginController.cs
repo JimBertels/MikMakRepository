@@ -42,6 +42,5 @@ namespace MikMak2016.Controllers
             // of Session["user"] = null;
             return RedirectToAction("Login", "Login"); ;
         }
-
     }
 }

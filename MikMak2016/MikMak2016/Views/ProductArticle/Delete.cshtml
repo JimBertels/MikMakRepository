@@ -1,4 +1,4 @@
-﻿@model MikMak2016.App_Data.DAL.ProductArticle
+﻿@model IEnumerable<MikMak2016.App_Data.DAL.ProductArticle>
 
 @{
     ViewBag.Title = "Delete";
@@ -9,67 +9,56 @@
 <h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>ProductArticle</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.IdProduct)
-        </dt>
+    
+  
+    <table class="table">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.IdProduct)</th>
+            <th>@Html.DisplayNameFor(model => model.IdArticle)</th>
+            <th>@Html.DisplayNameFor(model => model.Article.Number)</th>
+            <th>@Html.DisplayNameFor(model => model.Article.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.Quantity)</th>        
+            <th>@Html.DisplayNameFor(model => model.InsertedBy)</th>
+            <th>@Html.DisplayNameFor(model => model.InsertedOn)</th>
+            <th>@Html.DisplayNameFor(model => model.UpdatedBy)</th>
+            <th>@Html.DisplayNameFor(model => model.UpdatedOn)</th>        
+         </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.IdProduct)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.InsertedBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.InsertedBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.InsertedOn)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.InsertedOn)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdatedBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UpdatedBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdatedOn)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UpdatedOn)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Article.Number)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Article.Number)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
+        @foreach (var item in Model)
+        {
+            <tr>
+               <td>
+                    @Html.DisplayFor(model => item.IdProduct)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.IdArticle)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Article.Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Article.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.InsertedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.InsertedOn)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.UpdatedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.UpdatedOn)
+                </td>
+            </tr>
+        }
+    </table>
+    @using (Html.BeginForm("DeleteConfirmed", "ProductArticle", new { id = @ViewBag.Id}))
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

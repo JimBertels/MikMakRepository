@@ -1,74 +1,157 @@
-﻿@model MikMak2016.App_Data.DAL.ProductArticle
-
+﻿@model IEnumerable<MikMak2016.App_Data.DAL.ProductArticle>
 @{
     ViewBag.Title = "Details";
+    string endtotal = null;
+    double subtotal = 0;
+    double tmptotal = 0;
+    List<MikMak2016.App_Data.DAL.ArticleType> AT = ViewBag.IdType;
 }
 
-<h2>Details</h2>
 
+<h2>Details</h2>
 <div>
     <h4>ProductArticle</h4>
-	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.IdProduct)
-        </dt>
+    <hr />
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Article.Number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Article.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Article.UnitPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InsertedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InsertedOn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdatedOn)
+            </th>
+            <th>
+                Prix
+            </th>
+        </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.IdProduct)
-        </dd>
+        <tr>
+            <td colspan="5">@ViewBag.NameNrProd</td>
+        </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
+        @foreach (var type in AT)
+        {
+            bool flagType = true;
+            bool flagTot = false;
+            subtotal = 0;
+            foreach (var item in Model)
+            {
+                if (item.Article.IdArticleType == type.Id)
+                {
+                    if (flagType == true)
+                    {
+                        <tr>
+                            <td colspan="9"> Type: @type.Name</td>
+                        </tr>
+                        flagTot = true;
+                    }
+                    flagType = false;
 
-        <dd>
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(m => item.Quantity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.Article.Number)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.Article.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.Article.UnitPrice)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.InsertedBy)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.InsertedOn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.UpdatedBy)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.UpdatedOn)
+                        </td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.InsertedBy)
-        </dt>
+                        @{
+                    string total = null;
+                    double result;
+                    string quantity = (@item.Quantity).Trim();
+                    quantity = quantity.Replace(".", ",");
+                    string unitprice = (@item.Article.UnitPrice).Trim();
+                    unitprice = unitprice.Replace(".", ",");
+                    double q = 0;
+                    double up = 0;
+                    Double.TryParse(quantity, out result);
+                    if (result > 0) { q = Convert.ToDouble(quantity); }
+                    else { total = total + "The quantity is not a value."; };
+                    Double.TryParse(unitprice, out result);
+                    if (result > 0) { up = Convert.ToDouble(unitprice); }
+                    else { total = total + "The unit price is not a value."; };
 
-        <dd>
-            @Html.DisplayFor(model => model.InsertedBy)
-        </dd>
+                    if (String.IsNullOrEmpty(total))
+                    {
+                        total = (q * up).ToString("#,##0.00");
+                        subtotal = subtotal + (q * up);
+                        tmptotal = tmptotal + (q * up);
+                        endtotal = tmptotal.ToString("#,##0.00");
+                    }
+                        }
+                        <td>
+                            @total
+                        </td>
+                    </tr>
+                }
+            }
+            if (flagTot == true)
+            { 
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    @subtotal
+                </td>
+            </tr>
+                flagTot = false;
+            }
+        }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.InsertedOn)
-        </dt>
+        <tr style="border-bottom:1pt solid black;"></tr>
+        <tr style="font-weight: bold">
+            <td colspan="3">Grand total</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>@endtotal</td>
+        </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.InsertedOn)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdatedBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UpdatedBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdatedOn)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UpdatedOn)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Article.Number)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Article.Number)
-        </dd>
-
-    </dl>
+    </table>
 </div>
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

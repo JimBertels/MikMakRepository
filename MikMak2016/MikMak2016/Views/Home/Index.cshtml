@@ -3,15 +3,20 @@
 }
 
 <div class="jumbotron">
-    <h1>Mik Mak 2016</h1>
-   
+    <center>
+        <h1>
+            Mik Mak 2016
+        </h1>
+        <h2>
+            Page d'acceuil
+        </h2>
+    </center>
 </div>
 
 <div class="row">
     <center>
         <button type="button" onclick="location.href='@Url.Action("Index", "Article")'">
             Articles
-            @*<img alt="New" title="New" src="~/Images/Button/plus.png">*@
         </button>
         <button type="button" onclick="location.href='@Url.Action("Index", "ArticleType")'">
             Types d'article
@@ -23,7 +28,15 @@
             Fournisseurs
         </button>
         <button type="button" onclick="location.href='@Url.Action("Index", "ProductArticle")'">
-            Produits
+            Composer des Produits
         </button>
+    </center>
+</div>
+
+<div class="footer">
+    <center>
+        <p>
+            Webdesign © 2016 MikMak Application -- All rights reserved.
+        </p>
     </center>
 </div>

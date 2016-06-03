@@ -42,7 +42,11 @@ namespace MikMak2016.Controllers
                 default:
                     suppliers = suppliers.OrderBy(x => x.Code);
                     break;
-            }
+            } 
+
+            if (TempData["message"] != null)
+                ViewBag.Systeem = TempData["message"].ToString();
+
             return View(suppliers.ToList());
         }
 
@@ -64,6 +68,10 @@ namespace MikMak2016.Controllers
         // GET: /Supplier/Create
         public ActionResult Create()
         {
+            var sup = db.Supplier.OrderByDescending(s => s.Id).FirstOrDefault();
+            var index = sup.Id;
+            index++;
+            ViewBag.Id = index;
             return View();
         }
 
@@ -72,12 +80,13 @@ namespace MikMak2016.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Code,Name,Contact,Address,City,Region,PostalCode,Country,Phone,Mobile,Id,InsertedBy,InsertedOn,UpdatedBy,UpdatedOn")] Supplier supplier)
+        public ActionResult Create([Bind(Include = "Code,Name,Contact,Address,City,Region,PostalCode,Country,Phone,Mobile,Id,InsertedBy,InsertedOn,UpdatedBy,UpdatedOn")] Supplier supplier)
         {
             if (ModelState.IsValid)
             {
                 db.Supplier.Add(supplier);
                 db.SaveChanges();
+                TempData["message"] = "The supplier " + supplier.Name + " is created.";
                 return RedirectToAction("Index");
             }
 
@@ -104,12 +113,13 @@ namespace MikMak2016.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Code,Name,Contact,Address,City,Region,PostalCode,Country,Phone,Mobile,Id,InsertedBy,InsertedOn,UpdatedBy,UpdatedOn")] Supplier supplier)
+        public ActionResult Edit([Bind(Include = "Code,Name,Contact,Address,City,Region,PostalCode,Country,Phone,Mobile,Id,InsertedBy,InsertedOn,UpdatedBy,UpdatedOn")] Supplier supplier)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(supplier).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["message"] = "The supplier " + supplier.Name + " is modified.";
                 return RedirectToAction("Index");
             }
             return View(supplier);
@@ -138,6 +148,7 @@ namespace MikMak2016.Controllers
             Supplier supplier = db.Supplier.Find(id);
             db.Supplier.Remove(supplier);
             db.SaveChanges();
+            TempData["message"] = "The supplier " + supplier.Name + " is removed.";
             return RedirectToAction("Index");
         }
 

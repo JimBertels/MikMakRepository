@@ -2,6 +2,15 @@
 
 @{
     ViewBag.Title = "Résumé des produits";
+    List<MikMak2016.App_Data.DAL.Article> PF = ViewBag.IdProd;
+    List<MikMak2016.App_Data.DAL.ArticleType> AT = ViewBag.IdType;
+    string endtotal = null;
+    double subtotal = 0;
+    double tmptotal = 0;
+    double grandtotal = 0;
+    bool flagType = true; 
+    bool flagTot = false; 
+    bool flagSubtot = false;
 }
 
 <h2>Résumé des produits</h2>
@@ -14,9 +23,12 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Article.Name)
-        </th>        
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Article.Number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Article.UnitPrice)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.InsertedBy)
@@ -30,6 +42,9 @@
         <th>
             @Html.DisplayNameFor(model => model.UpdatedOn)
         </th>
+        <th>
+            Prix
+        </th>
     </tr>
 
     @if (Model.Count() == 0)
@@ -40,52 +55,134 @@
     }
     else
     {
-        foreach (var item in Model)
+        foreach (var product in PF)
         {
-            if (Model.Count() == 0)
+            flagTot = false;
+            
+            subtotal = 0;
+            <tr>
+                <td colspan="9"> Produit Fini: @product.Name</td>
+            </tr>
+            foreach (var type in AT)
             {
-                <tr>
-                    <td colspan="5">There are no items found !</td>
-                </tr>
-            }
-            else
-            {
-                foreach (var i in ViewBag.IdProd)
-                {
-                    <tr>
-                        <th>
-                            Produit Fini: ViewBag.IdProd.Name 
-                        </th>
-                    </tr>
-                    if (ViewBag.IdProd.Id == item.IdProduct)
-                    {
+                flagType = true;
+                flagSubtot = false;
+                tmptotal = 0; endtotal = null; 
 
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(m => item.Quantity)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(m => item.Article.Name)
-                            </td>                            
-                            <td>
-                                @Html.DisplayFor(m => item.Article.Number)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(m => item.InsertedBy)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(m => item.InsertedOn)
-                            </td>
-                            <th>
-                                @Html.DisplayFor(m => item.UpdatedBy)
-                            </th>
-                            <th>
-                                @Html.DisplayFor(m => item.UpdatedOn)
-                            </th>
-                        </tr>
+                foreach (var item in Model)
+                {
+                    if (item.IdProduct == product.Id)
+                    {
+                        if (item.Article.IdArticleType == type.Id)
+                        {
+                            if (flagType == true)
+                            {
+                                <tr>
+                                    <td colspan="9"> Type: @type.Name</td>
+                                </tr>
+                                flagSubtot = true;
+                            }
+                            flagType = false;
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(m => item.Quantity)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => item.Article.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => item.Article.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => item.Article.Number)
+                                </td>
+                                <th>
+                                    @Html.DisplayFor(m => item.Article.UnitPrice)
+                                </th>
+                                <td>
+                                    @Html.DisplayFor(m => item.InsertedBy)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => item.InsertedOn)
+                                </td>
+                                <th>
+                                    @Html.DisplayFor(m => item.UpdatedBy)
+                                </th>
+                                <th>
+                                    @Html.DisplayFor(m => item.UpdatedOn)
+                                </th>
+                                @{
+                    string total = null;
+                    double result;
+                    string quantity = (@item.Quantity).Trim();
+                    quantity = quantity.Replace(".", ",");
+                    string unitprice = (@item.Article.UnitPrice).Trim();
+                    unitprice = unitprice.Replace(".", ",");
+                    double q = 0;
+                    double up = 0;
+                    Double.TryParse(quantity, out result);
+                    if (result > 0) { q = Convert.ToDouble(quantity); }
+                    else { total = total + "The quantity is not a value."; };
+                    Double.TryParse(unitprice, out result);
+                    if (result > 0) { up = Convert.ToDouble(unitprice); }
+                    else { total = total + "The unit price is not a value."; };
+
+                    if (String.IsNullOrEmpty(total))
+                    {
+                        total = (q * up).ToString("#,##0.00");
+                        tmptotal = tmptotal + (q * up);
+                        subtotal = subtotal + (q * up);
+                        grandtotal = grandtotal + (q * up);
+                        endtotal = tmptotal.ToString("#,##0.00");
+                    }
+                                }
+                                <td>
+                                    @total
+                                </td>
+                            </tr>
+                        }
                     }
                 }
+                if (flagSubtot == true)
+                {
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            @subtotal
+                        </td>
+                    </tr>
+                    flagSubtot = false;
+                }
             }
+            if (flagTot == true)
+            { 
+            <tr style="border-bottom:1pt solid black;"></tr>
+            <tr style="font-weight: bold">
+                <td colspan="3">Total produit fini</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>@endtotal</td>
+            </tr>
+                flagTot = false;
+    }
         }
+        <tr style="border-bottom:1pt solid black;"></tr>
+            <tr style="font-weight: bold">
+                <td colspan="3">Grand total</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>@grandtotal</td>
+            </tr>
     }
 </table>

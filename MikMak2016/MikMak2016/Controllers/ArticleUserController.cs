@@ -7,15 +7,18 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MikMak2016.App_Data.DAL;
+using PagedList;
+using PagedList.Mvc;
 
 namespace MikMak2016.Controllers
 {
     public class ArticleUserController : Controller
     {
         private MikMak2016Entities db = new MikMak2016Entities();
+        private static int aantalPages = 10;
 
-        // GET: ArticleUser
-        public ActionResult Index(string searchBy, string search, string sortBy)
+        // GET: /ArticleUser/
+        public ActionResult Index(string searchBy, string search, string sortBy, int? page) //int? = nullable --> bij eerste bezoek pagina nog nul
         {
             ViewBag.SortNameParameter = string.IsNullOrEmpty(sortBy) ? "Name desc" : "";
             ViewBag.SortNumberParameter = string.IsNullOrEmpty(sortBy) ? "Number desc" : "";
@@ -44,10 +47,17 @@ namespace MikMak2016.Controllers
                     articles = articles.OrderBy(x => x.Number);
                     break;
             }
-            return View(articles.ToList());
+
+            int pageSize = aantalPages;
+            int pageNumber = (page ?? 1);
+            if (TempData["message"] != null)
+                ViewBag.Systeem = TempData["message"].ToString();
+
+            return View(articles.ToList().ToPagedList(pageNumber, pageSize)); //page ?? 1 = als het 0 is gebruik 1. 2e parameter is aantal items/pagina
         }
 
-        // GET: ArticleUser/Details/5
+
+        // GET: /Article/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -55,6 +65,9 @@ namespace MikMak2016.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Article article = db.Article.Find(id);
+            if (article.IdArticleType == 8)
+                ViewBag.Idproductarticle = db.ProductArticle.Where(art => art.IdArticle == id);
+
             if (article == null)
             {
                 return HttpNotFound();
@@ -62,97 +75,6 @@ namespace MikMak2016.Controllers
             return View(article);
         }
 
-        // GET: ArticleUser/Create
-        public ActionResult Create()
-        {
-            ViewBag.IdArticleType = new SelectList(db.ArticleType, "Id", "Code");
-            ViewBag.IdSupplier = new SelectList(db.Supplier, "Id", "Code");
-            ViewBag.IdUnitBase = new SelectList(db.UnitBase, "Id", "Code");
-            return View();
-        }
-
-        // POST: ArticleUser/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Number,StandardCost,Name,Breadth,GrossWeight,IdArticleType,RestockingTerm,IdUnitBase,UnitPrice,IdSupplier,Image,Id,InsertedBy,InsertedOn,UpdatedBy,UpdatedOn")] Article article)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Article.Add(article);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.IdArticleType = new SelectList(db.ArticleType, "Id", "Code", article.IdArticleType);
-            ViewBag.IdSupplier = new SelectList(db.Supplier, "Id", "Code", article.IdSupplier);
-            ViewBag.IdUnitBase = new SelectList(db.UnitBase, "Id", "Code", article.IdUnitBase);
-            return View(article);
-        }
-
-        // GET: ArticleUser/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Article article = db.Article.Find(id);
-            if (article == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.IdArticleType = new SelectList(db.ArticleType, "Id", "Code", article.IdArticleType);
-            ViewBag.IdSupplier = new SelectList(db.Supplier, "Id", "Code", article.IdSupplier);
-            ViewBag.IdUnitBase = new SelectList(db.UnitBase, "Id", "Code", article.IdUnitBase);
-            return View(article);
-        }
-
-        // POST: ArticleUser/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Number,StandardCost,Name,Breadth,GrossWeight,IdArticleType,RestockingTerm,IdUnitBase,UnitPrice,IdSupplier,Image,Id,InsertedBy,InsertedOn,UpdatedBy,UpdatedOn")] Article article)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(article).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.IdArticleType = new SelectList(db.ArticleType, "Id", "Code", article.IdArticleType);
-            ViewBag.IdSupplier = new SelectList(db.Supplier, "Id", "Code", article.IdSupplier);
-            ViewBag.IdUnitBase = new SelectList(db.UnitBase, "Id", "Code", article.IdUnitBase);
-            return View(article);
-        }
-
-        // GET: ArticleUser/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Article article = db.Article.Find(id);
-            if (article == null)
-            {
-                return HttpNotFound();
-            }
-            return View(article);
-        }
-
-        // POST: ArticleUser/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Article article = db.Article.Find(id);
-            db.Article.Remove(article);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
         protected override void Dispose(bool disposing)
         {

@@ -43,6 +43,10 @@ namespace MikMak2016.Controllers
                     articleTypes = articleTypes.OrderBy(x => x.Code);
                     break;
             }
+
+            if (TempData["message"] != null)
+                ViewBag.Systeem = TempData["message"].ToString();
+
             return View(articleTypes.ToList());
         }
 
@@ -64,6 +68,10 @@ namespace MikMak2016.Controllers
         // GET: /ArticleType/Create
         public ActionResult Create()
         {
+            var at = db.ArticleType.OrderByDescending(a => a.Id).FirstOrDefault();
+            var index = at.Id;
+            index++;
+            ViewBag.Id = index;
             return View();
         }
 
@@ -72,18 +80,24 @@ namespace MikMak2016.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Code,Name,Id,InsertedBy,InsertedOn,UpdatedBy,UpdatedOn")] ArticleType articletype)
+        public ActionResult Create([Bind(Include = "Code,Name,Id,InsertedBy,InsertedOn,UpdatedBy,UpdatedOn")] ArticleType articletype)
         {
             if (ModelState.IsValid)
             {
                 db.ArticleType.Add(articletype);
                 db.SaveChanges();
+                TempData["message"] = "The articletype " + articletype.Name + " is created.";
                 return RedirectToAction("Index");
             }
 
             return View(articletype);
         }
 
+        public ActionResult Collect()
+        {
+
+            return View(db.ArticleType.ToList());
+        }
         // GET: /ArticleType/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -104,12 +118,13 @@ namespace MikMak2016.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Code,Name,Id,InsertedBy,InsertedOn,UpdatedBy,UpdatedOn")] ArticleType articletype)
+        public ActionResult Edit([Bind(Include = "Code,Name,Id,InsertedBy,InsertedOn,UpdatedBy,UpdatedOn")] ArticleType articletype)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(articletype).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["message"] = "The articletype " + articletype.Name + " is modified.";
                 return RedirectToAction("Index");
             }
             return View(articletype);
@@ -138,6 +153,7 @@ namespace MikMak2016.Controllers
             ArticleType articletype = db.ArticleType.Find(id);
             db.ArticleType.Remove(articletype);
             db.SaveChanges();
+            TempData["message"] = "The articletype " + articletype.Name + " is removed.";
             return RedirectToAction("Index");
         }
 

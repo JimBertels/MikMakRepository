@@ -6,13 +6,11 @@
 
 <h2>Index</h2>
 
-<p>@Html.ActionLink("Page d'accueil", "IndexUser", "Home")</p>
-<p>
-    @*@Html.ActionLink("Create New", "Create")*@
-</p>
-<p>
-    @Html.ActionLink("Résumé Pdf", "GeneratePDF", "PDF", new { path = "Supplier" }, null)
-</p>
+<h2>Liste des fournisseurs</h2>
+
+<button>@Html.ActionLink("Page d'accueil", "IndexUser", "Home")</button>
+<button>@Html.ActionLink("Liste des fournisseurs en PDF", "GeneratePDF", "PDF", new { path = "Supplier" }, null)</button>
+
 <p>
     @using (Html.BeginForm("Index", "SupplierUser", FormMethod.Get))
     {
@@ -44,11 +42,12 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |*@
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @*@Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+                <button class="btn-primary">@Html.ActionLink("Detail", "Detail", new { id = item.Id }) </button>
             </td>
         </tr>
     }
 
 </table>
+<div class="text-danger">
+    @ViewBag.systeem
+</div>

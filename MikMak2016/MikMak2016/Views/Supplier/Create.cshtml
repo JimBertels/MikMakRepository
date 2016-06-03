@@ -17,6 +17,18 @@
         @Html.ValidationSummary(true)
 
         <div class="form-group">
+            @Html.LabelFor(model => model.Id, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Id, new { @value = ViewBag.Id, @readonly = true })
+            </div>
+            <script type="text/javascript">
+                  var element = document.getElementById("Id");              
+                  element.setAttribute("readonly"); 
+                  element.value = @ViewBag.Id;
+            </script>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.Code, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Code)
@@ -97,14 +109,6 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Id, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Id)
-                @Html.ValidationMessageFor(model => model.Id)
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.InsertedBy, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.InsertedBy)
@@ -117,22 +121,6 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.InsertedOn)
                 @Html.ValidationMessageFor(model => model.InsertedOn)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.UpdatedBy, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UpdatedBy)
-                @Html.ValidationMessageFor(model => model.UpdatedBy)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.UpdatedOn, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UpdatedOn)
-                @Html.ValidationMessageFor(model => model.UpdatedOn)
             </div>
         </div>
 

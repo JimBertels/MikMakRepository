@@ -1,88 +1,56 @@
-﻿@model MikMak2016.App_Data.DAL.ProductArticle
+﻿@model IEnumerable<MikMak2016.App_Data.DAL.ProductArticle>
 
 @{
     ViewBag.Title = "Edit";
 }
 
 <h2>Edit</h2>
+<h4>ProductArticle</h4>
+<h2>Article produit: @ViewBag.ProdName</h2>
 
+<table>
+    <tr>
+        <th class="col-md-2">@Html.DisplayNameFor(model => model.Article.Number)</th>
+        <th class="col-md-2">@Html.DisplayNameFor(model => model.Article.Name)</th>
+        <th class="col-md-2">@Html.DisplayNameFor(model => model.Quantity)</th>
+        <th class="col-md-2">@Html.DisplayNameFor(model => model.Article.UnitPrice)</th>
+        <th class="col-md-2">@Html.DisplayNameFor(model => model.UpdatedBy)</th>
+        <th class="col-md-2">@Html.DisplayNameFor(model => model.UpdatedOn)</th>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>ProductArticle</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-        <div class="form-group">
-            @Html.LabelFor(model => model.IdProduct, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IdProduct)
-                @Html.ValidationMessageFor(model => model.IdProduct)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IdArticle, "IdArticle", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("IdArticle", String.Empty)
-                @Html.ValidationMessageFor(model => model.IdArticle)
-            </div>
-        </div>
-
-        @Html.HiddenFor(model => model.Id)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Quantity, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Quantity)
-                @Html.ValidationMessageFor(model => model.Quantity)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.InsertedBy, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.InsertedBy)
-                @Html.ValidationMessageFor(model => model.InsertedBy)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.InsertedOn, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.InsertedOn)
-                @Html.ValidationMessageFor(model => model.InsertedOn)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.UpdatedBy, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UpdatedBy)
-                @Html.ValidationMessageFor(model => model.UpdatedBy)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.UpdatedOn, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UpdatedOn)
-                @Html.ValidationMessageFor(model => model.UpdatedOn)
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => item.Article.Number)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Article.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Article.UnitPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.UpdatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.UpdatedOn)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditOne", new { id = item.Id })|
+                @Html.ActionLink("Delete", "DeleteOne", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index") |
+    @Html.ActionLink("Add", "Create", new { id = ViewBag.IdProd })
 </div>
 
 @section Scripts {

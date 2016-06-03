@@ -8,10 +8,11 @@ namespace MikMak2016.Controllers
 {
     public class ErrorPageController : Controller
     {
-        // GET: ErrorPage
-        public ActionResult ErrorMessage()
+        //
+        // GET: /ErrorPage/
+        public ActionResult Index()
         {
             return View();
         }
-    }
+	}
 }

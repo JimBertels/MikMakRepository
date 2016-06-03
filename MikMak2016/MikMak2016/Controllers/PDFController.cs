@@ -56,9 +56,9 @@ namespace MikMak2016.Controllers
 
         public ActionResult ProductArticle()
         {
-            //var productarticle = db.Article.Where(a => a.IdArticleType == 8).Include(p => p.ProductArticle);
-            var productarticle = db.ProductArticle.Include(a => a.Article).OrderBy(i => i.IdProduct);
-            ViewBag.IdProd = new SelectList(db.Article.Where(i => i.IdArticleType == 8), "Id", "Name");
+            var productarticle = db.ProductArticle.OrderBy(p => p.Article.Name).OrderBy(p => p.Article.ArticleType.Code).OrderBy(p => p.IdProduct).Include(a => a.Article).Include(a => a.Article.ArticleType);
+            ViewBag.IdProd = (db.Article.Where(i => i.IdArticleType == 8).OrderBy(a => a.Name)).ToList();
+            ViewBag.IdType = (db.ArticleType.OrderBy(a => a.Code)).ToList();
             DateTime date = DateTime.Now;
             ViewBag.date = date;
             return View("PdfProductArticle", productarticle);
