@@ -16,6 +16,14 @@ namespace MikMak2016.Controllers
             }
             return View();
         }
+        public ActionResult IndexUser()
+        {
+            if (Session["user"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            return View();
+        }
 
         public ActionResult About()
         {

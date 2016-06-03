@@ -144,11 +144,15 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\ArticleTypeController.cs" />
+    <Compile Include="Controllers\ArticleTypeUserController.cs" />
+    <Compile Include="Controllers\ArticleUserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProductArticleController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
+    <Compile Include="Controllers\SupplierUserController.cs" />
     <Compile Include="Controllers\UnitBaseController.cs" />
+    <Compile Include="Controllers\UnitBaseUserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -252,6 +256,27 @@
     <Content Include="Views\UnitBase\Edit.cshtml" />
     <Content Include="Views\UnitBase\Index.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Home\IndexUser.cshtml" />
+    <Content Include="Views\ArticleUser\Create.cshtml" />
+    <Content Include="Views\ArticleUser\Delete.cshtml" />
+    <Content Include="Views\ArticleUser\Details.cshtml" />
+    <Content Include="Views\ArticleUser\Edit.cshtml" />
+    <Content Include="Views\ArticleUser\Index.cshtml" />
+    <Content Include="Views\ArticleTypeUser\Create.cshtml" />
+    <Content Include="Views\ArticleTypeUser\Delete.cshtml" />
+    <Content Include="Views\ArticleTypeUser\Details.cshtml" />
+    <Content Include="Views\ArticleTypeUser\Edit.cshtml" />
+    <Content Include="Views\ArticleTypeUser\Index.cshtml" />
+    <Content Include="Views\UnitBaseUser\Create.cshtml" />
+    <Content Include="Views\UnitBaseUser\Delete.cshtml" />
+    <Content Include="Views\UnitBaseUser\Details.cshtml" />
+    <Content Include="Views\UnitBaseUser\Edit.cshtml" />
+    <Content Include="Views\UnitBaseUser\Index.cshtml" />
+    <Content Include="Views\SupplierUser\Create.cshtml" />
+    <Content Include="Views\SupplierUser\Delete.cshtml" />
+    <Content Include="Views\SupplierUser\Details.cshtml" />
+    <Content Include="Views\SupplierUser\Edit.cshtml" />
+    <Content Include="Views\SupplierUser\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

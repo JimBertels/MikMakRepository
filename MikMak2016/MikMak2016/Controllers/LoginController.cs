@@ -21,17 +21,27 @@ namespace MikMak2016.Controllers
         public ActionResult Login(string name, string password)
         {
             if ("admin".Equals(name) && "123".Equals(password))
-            { 
-            Session["user"] = new User();
-            return RedirectToAction("Index","Home");
+            {
+                Session["user"] = new User();
+                return RedirectToAction("Index", "Home");
+            }
+            else if ("user".Equals(name) && "321".Equals(password))
+            {
+                Session["user"] = new User();
+                return RedirectToAction("IndexUser", "Home");
             }
             return View();
+
+
         }
+
         public ActionResult Logout()
         {
-            Session.Clear();
+            //Session.Clear();
+            Session.Abandon();
             // of Session["user"] = null;
-            return RedirectToAction("Index", "Home"); ;
+            return RedirectToAction("Login", "Login"); ;
         }
+
     }
 }
