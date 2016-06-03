@@ -54,3 +54,38 @@ C:\Users\Jim\Documents\_School\_Projectwerk programmeren\_Project\MikMak2016\Mik
 C:\Users\Jim\Documents\_School\_Projectwerk programmeren\_Project\MikMak2016\MikMak2016\MikMak2016.Tests\obj\Debug\MikMak2016.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Jim\Documents\_School\_Projectwerk programmeren\_Project\MikMak2016\MikMak2016\MikMak2016.Tests\obj\Debug\MikMak2016.Tests.dll
 C:\Users\Jim\Documents\_School\_Projectwerk programmeren\_Project\MikMak2016\MikMak2016\MikMak2016.Tests\obj\Debug\MikMak2016.Tests.pdb
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\MikMak2016.Tests.dll.config
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\MikMak2016.Tests.dll
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\MikMak2016.Tests.pdb
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\MikMak2016.dll
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\System.Web.Helpers.dll
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\System.Web.Mvc.dll
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\System.Web.Razor.dll
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\System.Web.WebPages.dll
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\EntityFramework.dll
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\System.Web.Optimization.dll
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\MikMak2016.pdb
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\System.Web.Helpers.xml
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\System.Web.Mvc.xml
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\System.Web.Razor.xml
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\System.Web.WebPages.xml
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\EntityFramework.xml
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\System.Web.Optimization.xml
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\obj\Debug\MikMak2016.Tests.csprojResolveAssemblyReference.cache
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\obj\Debug\MikMak2016.Tests.dll
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\obj\Debug\MikMak2016.Tests.pdb
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\PagedList.dll
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\PagedList.Mvc.dll
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\PagedList.xml
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\PagedList.Mvc.xml
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\System.Web.Http.dll
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\System.Web.Http.xml
+C:\Users\Jim\Desktop\MikMak2016\MikMak2016.Tests\bin\Debug\System.Net.Http.Formatting.xml

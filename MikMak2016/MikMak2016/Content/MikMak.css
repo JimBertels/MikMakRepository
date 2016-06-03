@@ -1,0 +1,60 @@
+﻿* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    font-family: Verdana;
+    font-size: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background-color: #F2F2F2;
+}
+
+.jumbotron {
+    background-image: url(../Content/Images/cute-little-fat-yellow-easter-chicken.jpg);
+    color: black;
+    font-size: 3.0em;
+    font-weight: bold;
+    border: solid;
+    border-width: 2px;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+    .jumbotron h2 {
+        font-style: italic;
+    }
+
+.row button {
+    background-color: rgba(255, 216, 0, 0.49);
+    border: solid;
+    border-width: 2px;
+    border-color: black;
+    border-radius: 5%;
+    color: black;
+    font-size: 1.5em;
+    font-weight: bold;    
+}
+
+.table {
+    background-image: url(../Content/Images/cute-little-fat-yellow-easter-chicken.jpg);
+    border: solid;
+    border-width: 2px;
+    padding-bottom: 2em;
+    width: 100%;
+    height: 20%;
+}
+
+    .table th {
+        background-color: #ededed;
+        color: black;
+        font-size: 1.0em;
+        font-weight: bold;
+        font-style: italic;
+    }

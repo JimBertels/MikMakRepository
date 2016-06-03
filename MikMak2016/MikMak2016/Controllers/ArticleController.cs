@@ -15,10 +15,36 @@ namespace MikMak2016.Controllers
         private MikMak2016Entities db = new MikMak2016Entities();
 
         // GET: /Article/
-        public ActionResult Index()
+        public ActionResult Index(string searchBy, string search, string sortBy)
         {
-            var article = db.Article.Include(a => a.ArticleType).Include(a => a.Supplier).Include(a => a.UnitBase);
-            return View(article.ToList());
+            ViewBag.SortNameParameter = string.IsNullOrEmpty(sortBy) ? "Name desc" : "";
+            ViewBag.SortNumberParameter = string.IsNullOrEmpty(sortBy) ? "Number desc" : "";
+
+            //var article = db.Article.Include(a => a.ArticleType).Include(a => a.Supplier).Include(a => a.UnitBase);
+            var articles = db.Article.AsQueryable(); 
+            
+            if (searchBy == "Number")
+            {
+                articles = articles.Where(x => x.Number.StartsWith(search) || search == null);
+            }
+            else
+            {
+                articles = articles.Where(x => x.Name.StartsWith(search) || search == null);
+            }
+
+            switch (sortBy)
+            { 
+                case "Number desc" :
+                    articles = articles.OrderByDescending(x => x.Number);
+                    break;
+                case "Name desc":
+                    articles = articles.OrderByDescending(x => x.Name);
+                    break;
+                default:
+                    articles = articles.OrderBy(x => x.Number);
+                    break;
+            }
+            return View(articles.ToList());
         }
 
         // GET: /Article/Details/5
@@ -50,7 +76,7 @@ namespace MikMak2016.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Number,StandardCost,Name,Breadth,GrossWeight,IdArticleType,RestockingTerm,IdUnitBase,UnitPrice,IdSupplier,Image,Id,InsertedBy,InsertedOn,UpdatedBy,UpdatedOn")] Article article)
+        public ActionResult Create([Bind(Include = "Number,StandardCost,Name,Breadth,GrossWeight,IdArticleType,RestockingTerm,IdUnitBase,UnitPrice,IdSupplier,Image,Id,InsertedBy,InsertedOn,UpdatedBy,UpdatedOn")] Article article)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +114,7 @@ namespace MikMak2016.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Number,StandardCost,Name,Breadth,GrossWeight,IdArticleType,RestockingTerm,IdUnitBase,UnitPrice,IdSupplier,Image,Id,InsertedBy,InsertedOn,UpdatedBy,UpdatedOn")] Article article)
+        public ActionResult Edit([Bind(Include = "Number,StandardCost,Name,Breadth,GrossWeight,IdArticleType,RestockingTerm,IdUnitBase,UnitPrice,IdSupplier,Image,Id,InsertedBy,InsertedOn,UpdatedBy,UpdatedOn")] Article article)
         {
             if (ModelState.IsValid)
             {

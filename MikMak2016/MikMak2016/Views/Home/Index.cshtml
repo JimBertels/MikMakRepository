@@ -7,17 +7,43 @@
    
 </div>
 
+@*<div class="row">
+    <center>
+        <button type="button" onclick="window.location(href='@Url.Action("Index", "Article")')">
+            Article
+        </button>
+        <button type="button" onclick="window.location(href='@Url.Action("Index", "ArticleType")')">
+            Type d'article
+        </button>
+        <button type="button" onclick="window.location(href='@Url.Action("Index", "UnitBase")')">
+            Unité de base
+        </button>
+        <button type="button" onclick="window.location(href='@Url.Action("Index", "Supplier")')">
+            Fournisseur
+        </button>
+        <button type="button" onclick="window.location(href='@Url.Action("Index", "ProductArticle")')">
+            ProductArticle
+        </button>
+    </center>
+</div>*@
+
 <div class="row">
-    <button type="button" onclick="window.location(href='@Url.Action("Index", "Article")')">
-        Article
-    </button>
-    <button type="button" onclick="window.location(href='@Url.Action("Index", "ArticleType")')">
-        Type d'article
-    </button>
-    <button type="button" onclick="window.location(href='@Url.Action("Index", "UnitBase")')">
-        Unité de base
-    </button>
-    <button type="button" onclick="window.location(href='@Url.Action("Index", "Supplier")')">
-        Fournisseur
-    </button>
+    <center>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Article")'">
+            Articles
+            @*<img alt="New" title="New" src="~/Images/Button/plus.png">*@
+        </button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "ArticleType")'">
+            Types d'article
+        </button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "UnitBase")'">
+            Unités de base
+        </button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Supplier")'">
+            Fournisseurs
+        </button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "ProductArticle")'">
+            Produits
+        </button>
+    </center>
 </div>

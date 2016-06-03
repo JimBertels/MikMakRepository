@@ -1,0 +1,17 @@
+﻿@model MikMak2016.Models.User
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+@using(Html.BeginForm()){ 
+    <div>@Html.LabelFor(Model=>Model.Login)</div>
+    <div>@Html.LabelFor(Model=>Model.Name)</div>
+    @*@<div>@Html.Label("Login name")</div>*@
+    <div>@Html.TextBox("name") </div>
+    <div>@Html.LabelFor(Model=>Model.Password)</div>
+    @*<div>@Html.Label("Password")</div>*@
+    @*<div>@Html.TextBox("password")</div>*@
+    <div>@Html.PasswordFor(model => model.Password)</div>
+    <input type="submit" value="Login" />
+}
