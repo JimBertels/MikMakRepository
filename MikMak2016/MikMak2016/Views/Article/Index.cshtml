@@ -4,27 +4,24 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Articles</h2>
+<h2>Liste d'articles</h2>
 
-<p>@Html.ActionLink("Page d'accueil", "Index", "Home")</p>
+<button>@Html.ActionLink("Page d'accueil", "Index", "Home")</button>
+<button>@Html.ActionLink("Créer nouvel article", "Create")</button>
+<button>@Html.ActionLink("Liste des articles en PDF", "GeneratePDF", "PDF", new { path = "Article" }, null)</button>
+
 <p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<p>
-    @Html.ActionLink("Résumé Pdf", "GeneratePDF", "PDF", new { path = "Article" }, null)
-</p>
-<p>
-    @using(Html.BeginForm("Index","Article",FormMethod.Get))
-    { 
-    <b>Search by:</b> @Html.RadioButton("searchBy", "Number", true) <text> Number</text>
-    @Html.RadioButton("searchBy", "Name") <text>Name</text><br />
-    @Html.TextBox("search") <input type="submit" value="search" />
+    @using (Html.BeginForm("Index", "Article", FormMethod.Get))
+    {
+        <b>Search by:</b> @Html.RadioButton("searchBy", "Number", true) <text> Number</text>
+        @Html.RadioButton("searchBy", "Name") <text>Name</text><br />
+        @Html.TextBox("search") <input type="submit" value="search" />
     }
 </p>
 <table class="table">
     <tr>
         <th>
-           @Html.ActionLink("Number", "Index", new {sortBy = ViewBag.SortNumberParameter, searchBy = Request.QueryString["searchBy"],search = Request["search"]})
+            @Html.ActionLink("Number", "Index", new { sortBy = ViewBag.SortNumberParameter, searchBy = Request.QueryString["searchBy"], search = Request["search"] })
         </th>
         <th>
             @Html.ActionLink("Name", "Index", new { sortBy = ViewBag.SortNameParameter, searchBy = Request.QueryString["searchBy"], search = Request["search"] })
@@ -32,107 +29,34 @@
         <th>
             @Html.DisplayNameFor(model => model.StandardCost)
         </th>
-        
-        @*<th>
-            @Html.DisplayNameFor(model => model.Breadth)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GrossWeight)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RestockingTerm)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UnitPrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.InsertedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.InsertedOn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdatedOn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ArticleType.Code)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Supplier.Code)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UnitBase.Code)
-        </th>*@
         <th>Action</th>
     </tr>
-@if (Model.Count() == 0)
-{
-<tr>
-    <td colspan="5">There are no matches found for these search criteria !</td>
-</tr>
-}
-else
-{ 
-foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Number)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StandardCost)
-        </td>
-       
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Breadth)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GrossWeight)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RestockingTerm)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UnitPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Image)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InsertedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InsertedOn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdatedOn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ArticleType.Code)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Supplier.Code)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UnitBase.Code)
-        </td>*@
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) 
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) 
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-}
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td colspan="5">There are no matches found for these search criteria !</td>
+        </tr>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StandardCost)
+                </td>
+                <td>
+                    <button class="btn btn-warning">@Html.ActionLink("Editer", "Edit", new { id = item.Id })</button>
+                    <button class="btn btn-primary">@Html.ActionLink("Details", "Details", new { id = item.Id }) </button>
+                    <button class="btn btn-danger">@Html.ActionLink("Supprimer", "Delete", new { id = item.Id })</button>
+                </td>
+            </tr>
+        }
+    }
 </table>

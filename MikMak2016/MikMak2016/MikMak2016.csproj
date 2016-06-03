@@ -149,7 +149,6 @@
     <Compile Include="Controllers\ArticleTypeController.cs" />
     <Compile Include="Controllers\ArticleTypeUserController.cs" />
     <Compile Include="Controllers\ArticleUserController.cs" />
-    <Compile Include="Controllers\ErrorPageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PDFController.cs" />
@@ -191,6 +190,8 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\image1.jpg" />
+    <Content Include="Content\MikMak.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -290,7 +291,6 @@
     <Content Include="Views\PDF\PdfProductArticle.cshtml" />
     <Content Include="Views\PDF\PdfSupplier.cshtml" />
     <Content Include="Views\PDF\PdfUnitBase.cshtml" />
-    <Content Include="Views\ErrorPage\ErrorMessage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

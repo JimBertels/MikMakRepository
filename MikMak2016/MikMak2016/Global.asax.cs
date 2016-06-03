@@ -24,12 +24,5 @@ namespace MikMak2016
         //    Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
         //    Response.Cache.SetNoStore();
         //}
-
-        protected void Application_Error(object sender, EventArgs e)
-        {
-            Exception Exc = Server.GetLastError();
-            Server.ClearError();
-            Response.Redirect("/Errorpage/ErrorMessage");
-        }
     }
 }
