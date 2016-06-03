@@ -1,0 +1,91 @@
+﻿@model IEnumerable<MikMak2016.App_Data.DAL.ProductArticle>
+
+@{
+    ViewBag.Title = "Résumé des produits";
+}
+
+<h2>Résumé des produits</h2>
+<h4>sur @ViewBag.Date</h4>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Article.Name)
+        </th>        
+        <th>
+            @Html.DisplayNameFor(model => model.Article.Number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InsertedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InsertedOn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdatedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdatedOn)
+        </th>
+    </tr>
+
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td colspan="5">There are no items found !</td>
+        </tr>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            if (Model.Count() == 0)
+            {
+                <tr>
+                    <td colspan="5">There are no items found !</td>
+                </tr>
+            }
+            else
+            {
+                foreach (var i in ViewBag.IdProd)
+                {
+                    <tr>
+                        <th>
+                            Produit Fini: ViewBag.IdProd.Name 
+                        </th>
+                    </tr>
+                    if (ViewBag.IdProd.Id == item.IdProduct)
+                    {
+
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(m => item.Quantity)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.Article.Name)
+                            </td>                            
+                            <td>
+                                @Html.DisplayFor(m => item.Article.Number)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.InsertedBy)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.InsertedOn)
+                            </td>
+                            <th>
+                                @Html.DisplayFor(m => item.UpdatedBy)
+                            </th>
+                            <th>
+                                @Html.DisplayFor(m => item.UpdatedOn)
+                            </th>
+                        </tr>
+                    }
+                }
+            }
+        }
+    }
+</table>

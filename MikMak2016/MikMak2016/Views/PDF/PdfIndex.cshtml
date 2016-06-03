@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Pdf";
+}
+
+<div>
+    <p>
+        <button type="button" onclick="window.open(href='@Url.Action("GeneratePDF", "PDF", new { path = "Article" })')">
+            PDF Article
+        </button>
+    </p>
+    <p>
+        <button type="button" onclick="window.open(href='@Url.Action("GeneratePDF", "PDF", new { path = "ProductArticle" })')">
+            PDF Produit d'article
+        </button>
+    </p>
+    <p>
+        <button type="button" onclick="window.open(href='@Url.Action("GeneratePDF", "PDF", new { path = "ArticleType" })')">
+            PDF Type d'article
+        </button>
+    </p>
+    <p>
+        <button type="button" onclick="window.open(href='@Url.Action("GeneratePDF", "PDF", new { path = "UnitBase" })')">
+            PDF Unité de base
+        </button>
+    </p>
+    <p>
+        <button type="button" onclick="window.open(href='@Url.Action("GeneratePDF", "PDF", new { path = "Supplier" })')">
+            PDF Fournisseur
+        </button>
+    </p>
+</div>
